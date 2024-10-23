@@ -18,8 +18,8 @@ public class OrderTest {
 
     @Test
     public void testGetOrderDate() {
-        order.setOrderDate("2021-09-01");
-        assertEquals("2021-09-01", order.getOrderDate());
+        order.setOrderDate("2021-10-23");
+        assertEquals("2021-10-23", order.getOrderDate());
     }
 
     @Test
