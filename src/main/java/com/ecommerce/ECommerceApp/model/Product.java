@@ -15,7 +15,6 @@ public class Product {
     public int getProductID() {
         return productID;
     }
-
     public void setProductID(int productID) {
         this.productID = productID;
     }
@@ -23,7 +22,6 @@ public class Product {
     public string getProductName() {
         return productName;
     }
-
     public void setProductName(string productName) {
         this.productName = productName;
     }
@@ -31,7 +29,6 @@ public class Product {
     public string getProductDescription() {
         return productDescription;
     }
-
     public void setProductDescription(string productDescription) {
         this.productDescription = productDescription;
     }
@@ -39,7 +36,6 @@ public class Product {
     public float getProductPrice() {
         return productPrice;
     }
-
     public void setProductPrice(float productPrice) {
         this.productPrice = productPrice;
     }
@@ -47,7 +43,6 @@ public class Product {
     public int getProductStock() {
         return productStock;
     }
-
     public void setProductStock(int productStock) {
         this.productStock = productStock;
     }
@@ -55,7 +50,6 @@ public class Product {
     public choice getProductCategory() {
         return productCategory;
     }
-
     public void setProductCategory(choice productCategory) {
         this.productCategory = productCategory;
     }
@@ -63,8 +57,14 @@ public class Product {
     public choice getProductSubCategory() {
         return productSubCategory;
     }   
-
     public void setProductSubCategory(choice productSubCategory) {
         this.productSubCategory = productSubCategory;
+    }
+
+    public array getProductImage() {
+        return productImage;
+    }
+    public void setProductImage(array productImage) {
+        this.productImage = productImage;
     }
 }
