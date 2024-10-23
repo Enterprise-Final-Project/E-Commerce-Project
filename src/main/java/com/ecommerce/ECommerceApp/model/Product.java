@@ -1,6 +1,7 @@
 package com.ecommerce.ECommerceApp.model;
 
-public interface Product {
+@Component
+public class Product {
     private int productID;
     private string productName;
     private string productDescription;
