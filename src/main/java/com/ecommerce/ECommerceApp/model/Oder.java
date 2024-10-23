@@ -1,15 +1,50 @@
 package com.ecommerce.ECommerceApp.model;
 
-public interface Order{
-    int getOrderID();
-    void setOrderID(int orderID);
+@Component
+public class Order{
+    private int orderID;
+    private dateTime orderDate;
+    private int userID;
+    private float totalAmount;
 
-    dateTime getOrderDate();
-    void setOrderDate(dateTime orderDate);
+    public Order(int orderID, dateTime orderDate, int userID, float totalAmount) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
+        this.userID = userID;
+        this.totalAmount = totalAmount;
+    }
 
-    int getUserID();
-    void setUserID(int userID);
+    public int getOrderID() {
+        return orderID;
+    }
 
-    float getTotalAmount();
-    void setTotalAmount(float totalAmount);
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public dateTime getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(dateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public int getUserID() {
+        return userID;
+    }   
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+
 }
