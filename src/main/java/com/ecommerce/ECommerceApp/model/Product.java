@@ -1,27 +1,69 @@
 package com.ecommerce.ECommerceApp.model;
 
 public interface Product {
-    int getProductID();
-    void setProductID(int productID);
+    private int productID;
+    private string productName;
+    private string productDescription;
+    private float productPrice;
+    private int productStock;
+    private choice productCategory;
+    private choice productSubCategory;
+    private array productImage;
 
-    string getProductName();
-    void setProductName(string productName);
 
-    string getProductDescription();
-    void setProductDescription(string productDescription);
+    public int getProductID() {
+        return productID;
+    }
 
-    float getProductPrice();
-    void setProductPrice(float productPrice);
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
 
-    int getProductStock();
-    void setProductStock(int productStock);
+    public string getProductName() {
+        return productName;
+    }
 
-    choice getProductCategory();
-    void setProductCategory(choice productCategory);
+    public void setProductName(string productName) {
+        this.productName = productName;
+    }
 
-    choice getProductSubCategory();
-    void setProductSubCategory(choice productSubCategory);
+    public string getProductDescription() {
+        return productDescription;
+    }
 
-    array getProductImage();
-    void setProductImage(image productImage);
+    public void setProductDescription(string productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public float getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(float productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public int getProductStock() {
+        return productStock;
+    }
+
+    public void setProductStock(int productStock) {
+        this.productStock = productStock;
+    }
+
+    public choice getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(choice productCategory) {
+        this.productCategory = productCategory;
+    }
+
+    public choice getProductSubCategory() {
+        return productSubCategory;
+    }   
+
+    public void setProductSubCategory(choice productSubCategory) {
+        this.productSubCategory = productSubCategory;
+    }
 }
