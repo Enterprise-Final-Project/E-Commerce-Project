@@ -1,0 +1,53 @@
+package com.ecommerce.ECommerceApp.model;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class SellerTest{
+    @Autowired
+    private Seller seller;
+
+    @Test
+    public void testGetProductIDList(){
+        assertEquals([], seller.getProductIDList());
+    }
+
+    @Test
+    public void testAddProduct(){
+        seller.addProduct(1);
+        assertEquals([1],seller.getProductIDList());
+    }
+
+    @Test
+    public void testRemoveProduct(){
+        seller.addProduct(2);
+        seller.addProduct(1);
+        seller.addProduct(3);
+        seller.removeProduct(2);
+        assertEquals([1,3], seller.getProductIDList());
+    }
+
+    @Test
+    public void testGetOrderList(){
+        assertEquals([], seller.getOrderFulfillmentList());
+    }
+
+    @Test
+    public void testAddProduct(){
+        seller.addOrder(1);
+        assertEquals([1],seller.getOrderFulfillmentList());
+    }
+
+    @Test
+    public void testRemoveProduct(){
+        seller.addOrder(2);
+        seller.addOrder(1);
+        seller.addOrder(3);
+        seller.removeOrder(2);
+        assertEquals([1,3], seller.getOrderFulfillmentList());
+    }
+   
+}
