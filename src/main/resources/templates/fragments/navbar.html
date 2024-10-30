@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div class="container">
+
+<div id="navbar" th:fragment="navbar" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand h1" th:href="@{/}">Home</a>
+        <div class="container-fluid">
+            <!-- left -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}">About</a>
+                </li>
+            </ul>
+            <!-- Right-->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="navbar-brand">Hello Name</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cart}">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/wishlist}">Wishlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/account}">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/past_orders}">Past Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+</div>
+</html>

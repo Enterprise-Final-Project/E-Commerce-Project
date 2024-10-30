@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <head th:replace="fragments/header :: header">
+    <title>Admin User</title>
+</head>
+<body>
+    <div>
+        <div class="container mt-5">
+
+            <h1 class="mb-4">User Management</h1>
+            <navbar>
+                <div>
+                    <ul>
+                       <li>
+                        <a href="/manage_users">Manage Users</a>
+                       </li> 
+                       <li>
+                        <a href="/manage_storefronts">Manage StoreFronts</a>
+                       </li> 
+                    </ul>
+                </div>
+            </navbar>
+            <!-- Add User Button -->
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                Add New User
+            </button>
+        
+            <!-- User Table -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.role}"></td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" 
+                                    th:attr="data-bs-target='#editUserModal' data-id=${user.id}">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm" 
+                                    th:attr="onclick='confirmDelete(' + ${user.id} + ')';">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
+    </div>
+        <!-- Include the footer -->
+        <div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

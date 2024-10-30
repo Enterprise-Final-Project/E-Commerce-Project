@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html>
+<head>
+    <head th:replace="fragments/header :: header"></head>
+    <title>Admin - Store</title>
+</head>
+<body>
+    <div>
+        <div class="container mt-5">
+
+            <h1 class="mb-4">Store Management</h1>
+            <navbar>
+                <div>
+                    <ul>
+                       <li>
+                        <a href="/manageUsers">Manage Users</a>
+                       </li> 
+                       <li>
+                        <a href="/manageStorefronts">Manage StoreFronts</a>
+                       </li> 
+                    </ul>
+                </div>
+            </navbar>
+            
+            <!-- (ONly show if admin) Add Storefront Button -->
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                Add New User
+            </button>
+        
+            <!-- Storefront Table -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Store Name</th>
+                        <th>Owner</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.role}"></td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" 
+                                    th:attr="data-bs-target='#editUserModal' data-id=${user.id}">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm" 
+                                    th:attr="onclick='confirmDelete(' + ${user.id} + ')';">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--- Storefront management-->
+            <div>
+                <div class="container mt-5">
+                    Storefront details:
+                    Header image
+                    storefront details 
+                    storefront location
+                    storefront short description
+                    storefront status
+                </div>
+            </div>
+                <div>
+                    <div class="container mt-5">
+            
+                        <h1 class="mb-4">Item Management</h1>
+                     
+                        <!-- Add Product Price Button -->
+                        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                            Add New Item
+                        </button>
+                    
+                        <!-- Storefront Item edit Table - render only if button is selected -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product name</th>
+                                    <th>Image</th>
+                                    <th>Product description</th>
+                                    <th>product price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="user : ${users}">
+                                    <td th:text="${user.id}"></td>
+                                    <td th:text="${user.username}"></td>
+                                    <td th:text="${user.email}"></td>
+                                    <td th:text="${user.role}"></td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" 
+                                                th:attr="data-bs-target='#editUserModal' data-id=${user.id}">
+                                            Edit
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" 
+                                                th:attr="onclick='confirmDelete(' + ${user.id} + ')';">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                </div>
+    </div>
+<!-- Include the footer -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
