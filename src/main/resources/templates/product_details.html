@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <head th:replace="fragments/header :: header"></head>
+        <!--- should probably add name of product + dash-->
+        <title>Product Details</title>
+    </head>
+    <body>
+    <div>
+        <!--- navbar and account bar -->
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+    </div>
+        <div class="col-4">
+            <!-- make this not appear if there's only one image tied to this...do we tie multiple images-->
+            <ul>
+                <li>image</li>
+                <li>image</li>
+                <li>image</li>
+                <li>image</li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <h1>Product Name</h1>
+            <img src="product_img.link"></img>
+            <p>star rating</p>
+            <p>short description</p>
+            <p>description</p>
+            
+            <p></p>
+        </div>
+        <div class="col-4">
+            <p>price</p>
+            <p>quanity</p>
+            <p>add to cart</p>
+            <p>add to wishlist</p>
+            <p>shipping details</p>
+        </div>
+    <!-- Include the footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+    </body>
+</html>

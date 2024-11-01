@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/header :: header">
+    <title>About</title>
+</head>
+<body>
+<!-- Include the navbar -->
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container mt-5">
+  <h1>Welcome to the Ecommerce Site</h1>
+  <p>Something something something professional about page something founded in 1800 something.</p>
+</div>
+
+<div class="container mt-5">
+  <h1>Something else you need? Contact us here!</h1>
+  <div class="mb-3">
+    <label class="form-label">Email address</label>
+    <input type="email" class="form-control" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Please put your comments here.</label>
+    <textarea class="form-control" rows="3"></textarea>
+  </div>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModel">
+    Submit
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="confirmationModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Thank you</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Thank you! We will reach out if anything is necessary.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Closes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<!-- Include the footer -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/header :: header"></head>
+<body>
+<div>
+    <!--- navbar and account bar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<div class="container">
+<div class="container mt-5">
+    <div class="row">
+            <div class="input-group input-group-lg">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-lg">Search</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Sidebar -->
+        <div class="col-12 col-md-2 bg-light p-3">
+            <h5 class="text-center">Left Sidebar</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Option 1</li>
+                <li class="list-group-item">Option 2</li>
+                <li class="list-group-item">Option 3</li>
+            </ul>
+        </div>
+
+        <!-- Main Content with Cards -->
+        <div class="col-12 col-md-8">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-2">
+                <div class="col">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Title</h5>
+                            <p class="card-text">Some quick example text to build on the card title.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Price</li>
+                            <li class="list-group-item">Delivery Time</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Add to Wishlist</a>
+                            <a href="#" class="card-link">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more cards -->
+                <div class="col">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="..." alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Another Card</h5>
+                            <p class="card-text">More quick example text.</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Price</li>
+                            <li class="list-group-item">Delivery Time</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Add to Cart</a>
+                            <a href="#" class="card-link">Add to Wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="col-12 col-md-2 bg-light p-3">
+            <h5 class="text-center">Right Sidebar</h5>
+            <ul class="list-group">
+                <li class="list-group-item">Option A</li>
+                <li class="list-group-item">Option B</li>
+                <li class="list-group-item">Option C</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</div><!-- footer -->
+<div class="footer" th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
