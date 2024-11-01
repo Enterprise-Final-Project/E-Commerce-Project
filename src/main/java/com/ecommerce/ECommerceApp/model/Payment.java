@@ -1,15 +1,38 @@
 package com.ecommerce.ECommerceApp.model;
 
-public interface Payment{
+
+import org.springframework.stereotype.Component;
+import java.time.LocalDateTime;
+
+@Component
+
+
+public class Payment{
     
-    int getPaymentID();
-    void setPaymentID(int PaymentID);
+    private int paymentID;
+    private PaymentType paymentType;
+    private PaymentStatus paymentStatus;
+    
+    public int getPaymentID(){
+        return paymentID;
+    }
+    public void setPaymentID(int PaymentID){
+        this.paymentID = paymentID;
+    }
 
-    PaymentType getPaymentType();
-    void SetPaymentType(PaymentType paymentType);
+    public PaymentType getPaymetType(){
+        return paymentType;
+    }
 
+    public void SetPaymentType(PaymentType paymentType){
+        this.paymentType = paymentType;
+    }
 
-    PaymentStatus getPaymentStatus();
-    void SetPaymentStatus(PaymentStatus status);
+    public PaymentStatus getPaymentStatus(){
+        return paymentStatus;
+    }
+    public void SetPaymentStatus(PaymentStatus status){
+        this.paymentStatus = status;
+    }
 
 }
