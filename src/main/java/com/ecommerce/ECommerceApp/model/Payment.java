@@ -28,7 +28,6 @@ public class Payment{
         this.paymentType = paymentType;
     }
 
-
     public PaymentStatus getPaymentStatus(){
         return paymentStatus;
     }
