@@ -1,5 +1,9 @@
 package com.ecommerce.ECommerceApp.model;
 
+/**
+ * Enumerator containing product categories and subcategories.
+ * Subcategories include: ELECTRONICS, FURNITURE, and CLOTHING
+ */
 public enum Category {
         ELECTRONICS(new Subcategory[]{
                 Subcategory.SMARTPHONE,
