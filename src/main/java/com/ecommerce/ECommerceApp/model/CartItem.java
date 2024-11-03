@@ -2,6 +2,10 @@ package com.ecommerce.ECommerceApp.model;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Represents item in a shopping care.
+ * Contains productID, quantity, and price.
+ */
 @Component
 public class CartItem {
     private int productID;
