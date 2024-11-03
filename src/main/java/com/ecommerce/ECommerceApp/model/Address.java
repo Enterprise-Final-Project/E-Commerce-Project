@@ -1,5 +1,9 @@
 package com.ecommerce.ECommerceApp.model;
 
+/**
+ * Represents street, city, state, zip code, and country.
+ * Utilized for mailing & shipping information in the ECommerce system.
+ */
 public class Address {
     private String street;
     private String city;
