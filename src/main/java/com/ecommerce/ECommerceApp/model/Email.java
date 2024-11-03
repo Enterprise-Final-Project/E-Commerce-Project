@@ -1,4 +1,6 @@
 package com.ecommerce.ECommerceApp.model;
+import com.ecommerce.ECommerceApp.exception.InvalidEmailException;
+
 import java.util.regex.Pattern;
 
 public class Email
@@ -21,7 +23,7 @@ public class Email
         if (isValid(emailAddress)) {
             this.emailAddress = emailAddress;
         } else {
-            throw new IllegalArgumentException("Invalid email address: " + emailAddress);
+            throw new InvalidEmailException("Invalid email address: " + emailAddress);
         }
     }
     //getter
