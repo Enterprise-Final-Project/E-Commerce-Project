@@ -4,9 +4,11 @@ package com.ecommerce.ECommerceApp.model;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
+/**
+ * Represents a payment in ECommerce system.
+ * Contains: paymentID, paymentType, paymentStatus
+ */
 @Component
-
-
 public class Payment{
     
     private int paymentID;
@@ -20,18 +22,18 @@ public class Payment{
         this.paymentID = paymentID;
     }
 
-    public PaymentType getPaymetType(){
+    public PaymentType getPaymentType(){
         return paymentType;
     }
 
-    public void SetPaymentType(PaymentType paymentType){
+    public void setPaymentType(PaymentType paymentType){
         this.paymentType = paymentType;
     }
 
     public PaymentStatus getPaymentStatus(){
         return paymentStatus;
     }
-    public void SetPaymentStatus(PaymentStatus status){
+    public void setPaymentStatus(PaymentStatus status){
         this.paymentStatus = status;
     }
 

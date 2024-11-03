@@ -1,4 +1,6 @@
 package com.ecommerce.ECommerceApp.model;
+import com.ecommerce.ECommerceApp.exception.InvalidPhoneNumberException;
+
 import java.util.regex.Pattern;
 
 public class PhoneNumber {
@@ -19,7 +21,7 @@ public class PhoneNumber {
         if (isValid(phoneNumber)) {
             this.phoneNumber = phoneNumber;
         } else {
-            throw new IllegalArgumentException("Invalid phone number: " + phoneNumber);
+            throw new InvalidPhoneNumberException("Invalid phone number " + phoneNumber);
         }
     }
 

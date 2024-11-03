@@ -1,13 +1,17 @@
 package com.ecommerce.ECommerceApp.model;
 
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+
 @Component
 public class Order{
     private int orderID;
-    private dateTime orderDate;
+    private LocalDateTime orderDate;
     private int userID;
     private float totalAmount;
 
-    public Order(int orderID, dateTime orderDate, int userID, float totalAmount) {
+    public Order(int orderID, LocalDateTime orderDate, int userID, float totalAmount) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.userID = userID;
@@ -22,11 +26,11 @@ public class Order{
         this.orderID = orderID;
     }
 
-    public dateTime getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(dateTime orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
