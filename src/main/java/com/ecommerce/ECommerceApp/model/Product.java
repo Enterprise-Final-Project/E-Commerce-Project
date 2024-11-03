@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * Represents a product in the ECommerce system.
+ * Contains: productID, productName, productDescription, ProductPrice, productStock, productCategory, productSubcategory
+ */
 @Component
 public class Product {
     private int productID;
