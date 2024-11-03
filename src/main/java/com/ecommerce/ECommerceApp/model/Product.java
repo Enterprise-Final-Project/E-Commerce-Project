@@ -25,19 +25,19 @@ public class Product {
         this.productID = productID;
     }
 
-    public string getProductName() {
+    public String getProductName() {
         return productName;
     }
 
-    public void setProductName(string productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 
-    public string getProductDescription() {
+    public String getProductDescription() {
         return productDescription;
     }
 
-    public void setProductDescription(string productDescription) {
+    public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
     }
 
@@ -57,19 +57,19 @@ public class Product {
         this.productStock = productStock;
     }
 
-    public choice getProductCategory() {
+    public Category getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategory(choice productCategory) {
+    public void setProductCategory(Category productCategory) {
         this.productCategory = productCategory;
     }
 
-    public choice getProductSubCategory() {
+    public Category getProductSubCategory() {
         return productSubCategory;
     }   
 
-    public void setProductSubCategory(choice productSubCategory) {
+    public void setProductSubCategory(Category productSubCategory) {
         this.productSubCategory = productSubCategory;
     }
 }
