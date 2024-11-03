@@ -1,15 +1,20 @@
 package com.ecommerce.ECommerceApp.model;
 
+import org.springframework.stereotype.Component;
+
+import java.nio.file.Path;
+import java.util.List;
+
 @Component
 public class Product {
     private int productID;
-    private string productName;
-    private string productDescription;
+    private String productName;
+    private String productDescription;
     private float productPrice;
     private int productStock;
-    private choice productCategory;
-    private choice productSubCategory;
-    private array productImage;
+    private Category productCategory;
+    private Category productSubCategory;
+    private List<Path> productImage;
 
 
     public int getProductID() {
