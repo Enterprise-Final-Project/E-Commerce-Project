@@ -1,6 +1,10 @@
 package com.ecommerce.ECommerceApp.model;
+
 import java.util.regex.Pattern;
 
+/**
+ * Represents a phone number in the e-commerce application.
+ */
 public class PhoneNumber {
     private String phoneNumber;
 
@@ -9,12 +13,26 @@ public class PhoneNumber {
             "^(\\+\\d{1,3}[- ]?)?\\(?\\d{3}\\)?[- .]?\\d{3}[- .]?\\d{4}$";
     private static final Pattern PHONE_PATTERN = Pattern.compile(PHONE_REGEX);
 
-    // Constructor
+    /**
+     * Constructs a new PhoneNumber with the specified phone number.
+     *
+     * @param phoneNumber the phone number
+     * @throws IllegalArgumentException if the phone number is invalid
+     */
     public PhoneNumber(String phoneNumber) {
-        setPhoneNumber(phoneNumber); // Use the setter for validation and assignment
+        if (isValid(phoneNumber)) {
+            this.phoneNumber = phoneNumber;
+        } else {
+            throw new IllegalArgumentException("Invalid phone number: " + phoneNumber);
+        }
     }
 
-    // Setter
+    /**
+     * Sets the phone number.
+     *
+     * @param phoneNumber the phone number
+     * @throws IllegalArgumentException if the phone number is invalid
+     */
     public void setPhoneNumber(String phoneNumber) {
         if (isValid(phoneNumber)) {
             this.phoneNumber = phoneNumber;
@@ -23,15 +41,22 @@ public class PhoneNumber {
         }
     }
 
-    // Getter
+    /**
+     * Gets the phone number.
+     *
+     * @return the phone number
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
-    // validate
+
+    /**
+     * Validates the phone number.
+     *
+     * @param phoneNumber the phone number to validate
+     * @return true if the phone number is valid, false otherwise
+     */
     public static boolean isValid(String phoneNumber) {
         return PHONE_PATTERN.matcher(phoneNumber).matches();
     }
-
-
-
 }

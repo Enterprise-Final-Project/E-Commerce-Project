@@ -1,64 +1,115 @@
 package com.ecommerce.ECommerceApp.model;
+
 import java.util.UUID;
 
+/**
+ * Represents a user in the e-commerce application.
+ */
 public class User {
 
-    //db details
+    // db details
     public String userID;
     public Boolean active;
 
-    //user account details
+    // user account details
     public String firstName;
     public String lastName;
     public PhoneNumber phoneNumber;
     public Email email;
-    private String password;
+    protected String password;
 
-
-    //payment details
+    // payment details
     public Address mailingAddress;
     public Address shippingAddress;
     public Payment paymentMethod;
     public AccountType accountType;
 
-    //constructor
-    public User(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType){
+    /**
+     * Constructs a new User with the specified details.
+     *
+     * @param firstName the first name of the user
+     * @param lastName the last name of the user
+     * @param phoneNumber the phone number of the user
+     * @param email the email address of the user
+     * @param password the password of the user
+     * @param mailingAddress the mailing address of the user
+     * @param shippingAddress the shipping address of the user
+     * @param paymentMethod the payment method of the user
+     * @param accountType the account type of the user
+     */
+    public User(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType) {
         this.userID = generateUniqueID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-
         this.mailingAddress = mailingAddress;
         this.shippingAddress = shippingAddress;
         this.paymentMethod = paymentMethod;
         this.accountType = accountType;
-
     }
 
-    //getters
-    public String getUserID(){
+    /**
+     * Gets the user ID.
+     *
+     * @return the user ID
+     */
+    public String getUserID() {
         return this.userID;
     }
-    public String getFirstName(){
+
+    /**
+     * Gets the first name of the user.
+     *
+     * @return the first name of the user
+     */
+    public String getFirstName() {
         return this.firstName;
     }
-    public String getFullName(){
+
+    /**
+     * Gets the full name of the user.
+     *
+     * @return the full name of the user
+     */
+    public String getFullName() {
         return this.firstName + " " + this.lastName;
     }
 
-    //setter
-    private void setNewPassword(String password){
+    /**
+     * Sets a new password for the user.
+     *
+     * @param password the new password
+     */
+    protected void setNewPassword(String password) {
         this.password = password;
     }
-    //database handler
-    private void setActive(boolean active){
+
+    /**
+     * Sets the active status of the user.
+     *
+     * @param active the active status
+     */
+    protected void setActive(boolean active) {
         this.active = active;
     }
-    //updates information for the field for the HTML class
-    private void updateInformation(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType){
-        //if fields are left blank, they will not update
+
+    /**
+     * Updates the user's information.
+     *
+     * @param firstName the first name of the user
+     * @param lastName the last name of the user
+     * @param phoneNumber the phone number of the user
+     * @param email the email address of the user
+     * @param password the password of the user
+     * @param mailingAddress the mailing address of the user
+     * @param shippingAddress the shipping address of the user
+     * @param paymentMethod the payment method of the user
+     * @param accountType the account type of the user
+     */
+    protected void updateInformation(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType) {
+        // if fields are left blank, they will not update
         if (firstName != null && !firstName.isBlank()) {
             this.firstName = firstName;
         }
@@ -88,9 +139,12 @@ public class User {
         }
     }
 
-    // generate a unique UUID for the db
+    /**
+     * Generates a unique UUID for the user.
+     *
+     * @return the unique UUID
+     */
     private String generateUniqueID() {
         return UUID.randomUUID().toString();
     }
-
 }
