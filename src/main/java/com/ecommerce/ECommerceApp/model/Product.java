@@ -1,5 +1,7 @@
 package com.ecommerce.ECommerceApp.model;
 
+import java.math.BigDecimal;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,7 +12,7 @@ public class Product {
     private int productID;
     private String productName;
     private String productDescription;
-    private float productPrice;
+    private BigDecimal productPrice;
     private int productStock;
     private Category productCategory;
     private Category.Subcategory productSubCategory;
@@ -75,7 +77,7 @@ public class Product {
      *
      * @return the product price
      */
-    public float getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
@@ -84,7 +86,7 @@ public class Product {
      *
      * @param productPrice the product price
      */
-    public void setProductPrice(float productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 
