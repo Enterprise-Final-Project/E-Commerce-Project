@@ -8,23 +8,22 @@
                 <!--- navbar and account bar -->
                 <div th:replace="fragments/navbar :: navbar"></div>
 
-            </div>
-            <div class="container mt-5">
-                <h1>Login</h1>
+                <div class="container mt-5">
+                    <h1>Login</h1>
+                    
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" class="form-control" placeholder="Enter your email" aria-label="Email address">
                 
-                <label for="email">Email:</label>
-                <input type="text" id="email" class="form-control" placeholder="Enter your email">
-            
-                <label for="password">Password:</label>
-                <input type="password" id="password" class="form-control" placeholder="Enter your password">
-            
-                <button type="submit" class="btn btn-primary mt-3">Login</button>
-            
-                <div class="mt-3">
-                    <p><a href="/forgot-password">Forgot Password?</a></p>
-                    <p><a href="/register">Register Now</a></p>
-                </div>
-            </div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" aria-label="Password">
+                
+                    <button type="submit" class="btn btn-primary mt-3" aria-label="Submit login form">Login</button>
+                
+                    <div class="mt-3">
+                        <p><a href="/forgot-password" aria-label="Forgot Password link">Forgot Password?</a></p>
+                        <p><a href="/register" aria-label="Register Now link">Register Now</a></p>
+                    </div>
+                </div>                
 
             <!-- Include the footer -->
             <div th:replace="fragments/footer :: footer"></div>
