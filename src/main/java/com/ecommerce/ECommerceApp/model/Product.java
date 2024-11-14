@@ -17,6 +17,30 @@ public class Product {
     private String[] productImage;
 
     /**
+     * Constructs a new Product with the specified details.
+     *
+     * @param productID the product ID
+     * @param productName the product name
+     * @param productDescription the product description
+     * @param productPrice the product price
+     * @param productStock the product stock
+     * @param productCategory the product category
+     * @param productSubCategory the product subcategory
+     * @param productImage the product images
+     */
+    public Product(int productID, String productName, String productDescription, float productPrice, int productStock,
+                   Category productCategory, Category.Subcategory productSubCategory, String[] productImage) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.productStock = productStock;
+        this.productCategory = productCategory;
+        this.productSubCategory = productSubCategory;
+        this.productImage = productImage;
+    }
+
+    /**
      * Gets the product ID.
      *
      * @return the product ID
