@@ -13,6 +13,19 @@ public class Payment {
     private PaymentStatus paymentStatus;
 
     /**
+     * Constructor for Payment.
+     *
+     * @param paymentID the payment ID
+     * @param paymentType the payment type
+     * @param paymentStatus the payment status
+     */
+    public Payment(int paymentID, PaymentType paymentType, PaymentStatus paymentStatus) {
+        this.paymentID = paymentID;
+        this.paymentType = paymentType;
+        this.paymentStatus = paymentStatus;
+    }
+
+    /**
      * Gets the payment ID.
      *
      * @return the payment ID

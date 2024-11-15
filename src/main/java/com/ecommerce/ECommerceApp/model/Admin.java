@@ -26,9 +26,9 @@ public class Admin extends User {
             String adminLevel) {
         super(firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod,
                 accountType);
-                this.adminLevel = adminLevel;
+        this.adminLevel = adminLevel;
     }
-    
+
     /**
      * Gets the admin level of the admin.
      *
