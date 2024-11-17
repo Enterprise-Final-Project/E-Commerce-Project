@@ -7,5 +7,6 @@ public enum AccountType {
     USER,
     SUPPLIER_USER,
     SUPPLIER_ADMIN,
-    ADMIN
+    ADMIN,
+    BUYER
 }
