@@ -13,6 +13,21 @@ public class Review {
     private int userID;
 
     /**
+     * Constructs a new Review with the specified details.
+     * 
+     * @param ReviewID the review ID
+     * @param rating the rating
+     * @param comment the comment
+     * @param userID the user ID of the reviewer
+     */
+    public Review(int ReviewID, int rating, String comment, int userID) {
+        this.ReviewID = ReviewID;
+        this.rating = rating;
+        this.comment = comment;
+        this.userID = userID;
+    }
+
+    /**
      * Gets the review ID.
      * 
      * @return the review ID
