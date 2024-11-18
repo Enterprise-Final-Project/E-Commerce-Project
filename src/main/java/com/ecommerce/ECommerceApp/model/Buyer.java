@@ -1,5 +1,6 @@
 package com.ecommerce.ECommerceApp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -8,10 +9,17 @@ import org.springframework.stereotype.Component;
  * Represents a buyer in the e-commerce application.
  */
 @Component
-public class Buyer {
-    private List<Integer> cart;
-    private List<Integer> orderHistory;
-    private List<Integer> wishList;
+public class Buyer extends User {
+    public List<Integer> cart;
+    public List<Integer> orderHistory;
+    public List<Integer> wishList;
+
+    public Buyer(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType, List<Integer> cart, List<Integer> orderHistory, List<Integer> wishList) {
+        super(firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod, accountType);
+        this.cart = new ArrayList<>();
+        this.orderHistory = new ArrayList<>();
+        this.wishList = new ArrayList<>();
+    }
 
     /**
      * Gets the list of product IDs in the buyer's cart.
