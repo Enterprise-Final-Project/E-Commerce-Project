@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <head th:replace="fragments/header :: header"></head>
+<head th:replace="fragments/header :: header"></head>
         <title>E-Commerce Website</title>
     </head>
     <body>
@@ -9,14 +8,22 @@
                 <!--- navbar and account bar -->
                 <div th:replace="fragments/navbar :: navbar"></div>
 
-            </div>
-            <div>
-                Login
-                <p>Email: </p><input type="text">
-                <p>Password</p><input type="text">
-                <p>Forgot Password?</p>
-                <p>Register Now</p>
-            </div>
+                <div class="container mt-5">
+                    <h1>Login</h1>
+                    
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" class="form-control" placeholder="Enter your email" aria-label="Email address">
+                
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" aria-label="Password">
+                
+                    <button type="submit" class="btn btn-primary mt-3" aria-label="Submit login form">Login</button>
+                
+                    <div class="mt-3">
+                        <p><a href="/forgot-password" aria-label="Forgot Password link">Forgot Password?</a></p>
+                        <p><a href="/register" aria-label="Register Now link">Register Now</a></p>
+                    </div>
+                </div>                
 
             <!-- Include the footer -->
             <div th:replace="fragments/footer :: footer"></div>

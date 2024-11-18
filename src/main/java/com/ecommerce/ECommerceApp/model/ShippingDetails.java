@@ -59,8 +59,12 @@ public class ShippingDetails {
      * @param deliveryDate the delivery date
      */
     public void setDeliveryDate(LocalDateTime deliveryDate) {
+        if (deliveryDate.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("Delivery date cannot be in the past.");
+        }
         this.deliveryDate = deliveryDate;
     }
+    
 
     /**
      * Gets the shipping type.
