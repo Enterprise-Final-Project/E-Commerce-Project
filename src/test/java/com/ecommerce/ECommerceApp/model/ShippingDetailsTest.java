@@ -5,14 +5,11 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Unit tests for the {@link ShippingDetails} class.
  */
 public class ShippingDetailsTest {
-
-    @Autowired
     private ShippingDetails details;
 
     @BeforeEach

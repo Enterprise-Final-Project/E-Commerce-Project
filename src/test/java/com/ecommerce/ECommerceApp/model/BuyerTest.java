@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Unit tests for the Buyer class.
  */
 public class BuyerTest {
-    @Autowired
     private Buyer buyer;
 
     /**

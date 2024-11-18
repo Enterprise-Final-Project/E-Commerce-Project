@@ -4,13 +4,11 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Unit tests for the {@link Product} class.
  */
 public class ProductTest {
-    @Autowired
     private Product product;
 
     /**

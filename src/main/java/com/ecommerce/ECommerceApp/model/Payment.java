@@ -1,11 +1,8 @@
 package com.ecommerce.ECommerceApp.model;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Represents a payment in the e-commerce application.
  */
-@Component
 public class Payment {
     
     private int paymentID;

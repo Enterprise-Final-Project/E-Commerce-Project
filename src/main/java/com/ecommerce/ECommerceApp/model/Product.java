@@ -1,11 +1,8 @@
 package com.ecommerce.ECommerceApp.model;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Represents a product in the e-commerce application.
  */
-@Component
 public class Product {
     private int productID;
     private String productName;

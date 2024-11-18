@@ -2,13 +2,6 @@ package com.ecommerce.ECommerceApp.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Component;
-
-/**
- * Represents a buyer in the e-commerce application.
- */
-@Component
 public class Buyer extends User {
     public List<Integer> cart;
     public List<Integer> orderHistory;

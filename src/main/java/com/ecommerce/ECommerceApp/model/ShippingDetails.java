@@ -2,12 +2,9 @@ package com.ecommerce.ECommerceApp.model;
 
 import java.time.LocalDateTime;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Represents the shipping details in the e-commerce application.
  */
-@Component
 public class ShippingDetails {
     private String shippingAddress;
     private LocalDateTime deliveryDate;

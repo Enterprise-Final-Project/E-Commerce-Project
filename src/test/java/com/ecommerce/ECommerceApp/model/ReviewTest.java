@@ -3,14 +3,11 @@ package com.ecommerce.ECommerceApp.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Unit tests for the Review class.
  */
 public class ReviewTest {
-    
-    @Autowired
     private Review review;
 
     /**

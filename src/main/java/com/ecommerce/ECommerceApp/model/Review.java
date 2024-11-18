@@ -1,11 +1,8 @@
 package com.ecommerce.ECommerceApp.model;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Represents a review made by a user.
  */
-@Component
 public class Review {
     private int ReviewID;
     private int rating;
