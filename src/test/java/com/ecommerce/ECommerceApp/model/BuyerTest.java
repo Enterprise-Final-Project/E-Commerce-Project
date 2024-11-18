@@ -7,10 +7,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Unit tests for the Buyer class.
+ */
 public class BuyerTest {
     @Autowired
     private Buyer buyer;
 
+    /**
+     * Sets up a Buyer instance before each test.
+     */
     @BeforeEach
     public void setUp() {
         buyer = new Buyer(
@@ -29,17 +35,26 @@ public class BuyerTest {
         );               
     }
 
+    /**
+     * Tests that the cart is not null.
+     */
     @Test
     public void testGetCart() {
         assertNotNull(buyer.getCart());
     }
 
+    /**
+     * Tests adding an item to the cart.
+     */
     @Test
     public void testAddToCart() {
         buyer.addToCart(1);
         assertNotNull(buyer.getCart());
     }
 
+    /**
+     * Tests removing an item from the cart.
+     */
     @Test
     public void testRemoveFromCart() {
         buyer.addToCart(1);
@@ -47,17 +62,26 @@ public class BuyerTest {
         assertNotNull(buyer.getCart());
     }
 
+    /**
+     * Tests that the order history is not null.
+     */
     @Test
     public void testGetOrderHistory() {
         assertNotNull(buyer.getOrderHistory());
     }
 
+    /**
+     * Tests adding an item to the order history.
+     */
     @Test
     public void testAddToOrderHistory() {
         buyer.addToOrderHistory(1);
         assertNotNull(buyer.getOrderHistory());
     }
 
+    /**
+     * Tests removing an item from the order history.
+     */
     @Test
     public void testRemoveFromOrderHistory() {
         buyer.addToOrderHistory(1);
@@ -65,17 +89,26 @@ public class BuyerTest {
         assertNotNull(buyer.getOrderHistory());
     }
 
+    /**
+     * Tests that the wish list is not null.
+     */
     @Test
     public void testGetWishList() {
         assertNotNull(buyer.getWishList());
     }
 
+    /**
+     * Tests adding an item to the wish list.
+     */
     @Test
     public void testAddToWishList() {
         buyer.addToWishList(1);
         assertNotNull(buyer.getWishList());
     }
 
+    /**
+     * Tests removing an item from the wish list.
+     */
     @Test
     public void testRemoveFromWishList() {
         buyer.addToWishList(1);
