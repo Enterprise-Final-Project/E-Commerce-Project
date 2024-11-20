@@ -1,13 +1,28 @@
 package com.ecommerce.ECommerceApp.controller;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ecommerce.ECommerceApp.model.Product;
+import com.ecommerce.ECommerceApp.service.ProductService;
 
 /**
  * Controller class for handling e-commerce related requests.
  */
 @Controller
 public class EcommerceController {
+
+    private static final Logger logger = LoggerFactory.getLogger(EcommerceController.class);
+
+    @Autowired
+    private ProductService productService;
 
     /**
      * Handles requests to the landing page.
@@ -137,6 +152,27 @@ public class EcommerceController {
     @GetMapping("/wishlist")
     public String wishlist() {
         return "wishlist";
+    }
+
+    /**
+     * Handles search requests.
+     *
+     * @param query the search query
+     * @param model the model to hold search results
+     * @return the name of the landing page view with search results
+     */
+    @GetMapping("/search")
+    public String search(@RequestParam("query") String query, Model model) {
+        logger.info("Search query: {}", query);
+        try {
+            List<Product> products = productService.searchProducts(query);
+            logger.info("Search results: {}", products);
+            model.addAttribute("searchResults", products);
+        } catch (Exception e) {
+            logger.error("Error occurred while searching for products", e);
+            model.addAttribute("errorMessage", "An error occurred while searching for products. Please try again.");
+        }
+        return "landing";
     }
 
 }

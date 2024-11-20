@@ -1,7 +1,5 @@
 package com.ecommerce.ECommerceApp.model;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +21,7 @@ public class ProductTest {
             3.0f, 
             1, 
             Category.ELECTRONICS, 
-            Category.Subcategory.SMARTPHONE, 
-            new String[]{"image1", "image2"}
+            Category.Subcategory.SMARTPHONE
         );
     }
 
@@ -152,25 +149,5 @@ public class ProductTest {
     public void testSetProductSubCategory() {
         product.setProductSubCategory(Category.Subcategory.SMARTPHONE);
         assert product.getProductSubCategory().equals(Category.Subcategory.SMARTPHONE);
-    }
-
-    /**
-     * Tests the {@link Product#getProductImage()} method.
-     */
-    @Test
-    public void testGetProductImage() {
-        String[] images = {"image1", "image2"};
-        product.setProductImage(images);
-        assert Arrays.equals(product.getProductImage(), images);
-    }
-
-    /**
-     * Tests the {@link Product#setProductImage(String[])} method.
-     */
-    @Test
-    public void testSetProductImage() {
-        String[] images = {"image1", "image2"};
-        product.setProductImage(images);
-        assert Arrays.equals(product.getProductImage(), images);
     }
 }
