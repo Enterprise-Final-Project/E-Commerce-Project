@@ -155,6 +155,16 @@ public class EcommerceController {
     }
 
     /**
+     * Handles requests to the admin product management page.
+     *
+     * @return the name of the admin product management page view
+     */
+    @GetMapping("/admin_product_management")
+    public String admin_product_management() {
+        return "admin_product_management";
+    }
+
+    /**
      * Handles search requests.
      *
      * @param query the search query
