@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/header :: header">
+    <title>Admin Product Management</title>
+</head>
+
+<body>
+
+<div>
+
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+</div>
+
+    <h1>Admin Product Management<h1>
+
+        <button id="addProductBtn" type="button" class="btn btn-primary">Add Product</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        
+
+        <tbody id="productTabel">
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:text="${product.category}"></td>
+                <td>
+                    <button id="editProductBtn" type="button" class="btn btn-primary" th:attr="data-id=${product.id}">Edit</button>
+                    <button id="deleteProductBtn" type="button" class="btn btn-danger" th:attr="data-id${product.id}">Delete</button>
+                </td>
+            </tr>
+
+            <div th:replace="fragments/footer :: footer"></div>
+        </tbody>
+        </table>
+
+        <div id="addProductModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2 id="modalTitle">Add Product</h2>
+                <form id="productForm">
+                    
+                    <input type="hidden" id="productId" name="id">
+
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" required>
+
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" required>
+
+                    <button id="submitProductBtn" type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+        </div>
+</body>
+</html>
