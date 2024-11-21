@@ -1,17 +1,35 @@
 package com.ecommerce.ECommerceApp.model;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Represents a product in the e-commerce application.
  */
+@Entity
 public class Product {
-    private int productID;
-    private String productName;
-    private String productDescription;
-    private float productPrice;
-    private int productStock;
-    private Category productCategory;
-    private Category.Subcategory productSubCategory;
-    private String[] productImage;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String description;
+    private double price;
+    private String deliveryTime;
+    private int stock;
+
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @Enumerated(EnumType.STRING)
+    private Category.Subcategory subcategory;
+
+    public Product() {
+    }
 
     /**
      * Constructs a new Product with the specified details.
@@ -23,36 +41,34 @@ public class Product {
      * @param productStock the product stock
      * @param productCategory the product category
      * @param productSubCategory the product subcategory
-     * @param productImage the product images
      */
     public Product(int productID, String productName, String productDescription, float productPrice, int productStock,
-                   Category productCategory, Category.Subcategory productSubCategory, String[] productImage) {
-        this.productID = productID;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
-        this.productStock = productStock;
-        this.productCategory = productCategory;
-        this.productSubCategory = productSubCategory;
-        this.productImage = productImage;
+            Category productCategory, Category.Subcategory productSubCategory) {
+        this.id = Long.valueOf(productID);
+        this.name = productName;
+        this.description = productDescription;
+        this.price = productPrice;
+        this.stock = productStock;
+        this.category = productCategory;
+        this.subcategory = productSubCategory;
     }
 
     /**
-     * Gets the product ID.
+     * Gets the product ID as an integer.
      *
-     * @return the product ID
+     * @return the product ID as an integer
      */
     public int getProductID() {
-        return productID;
+        return id.intValue();
     }
 
     /**
-     * Sets the product ID.
+     * Sets the product ID as an integer.
      *
-     * @param productID the product ID
+     * @param id the product ID as an integer
      */
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProductID(int id) {
+        this.id = Long.valueOf(id);
     }
 
     /**
@@ -61,16 +77,16 @@ public class Product {
      * @return the product name
      */
     public String getProductName() {
-        return productName;
+        return name;
     }
 
     /**
      * Sets the product name.
      *
-     * @param productName the product name
+     * @param name the product name
      */
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductName(String name) {
+        this.name = name;
     }
 
     /**
@@ -79,34 +95,52 @@ public class Product {
      * @return the product description
      */
     public String getProductDescription() {
-        return productDescription;
+        return description;
     }
 
     /**
      * Sets the product description.
      *
-     * @param productDescription the product description
+     * @param description the product description
      */
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
+    public void setProductDescription(String description) {
+        this.description = description;
     }
 
     /**
-     * Gets the product price.
+     * Gets the product price as a float.
      *
-     * @return the product price
+     * @return the product price as a float
      */
     public float getProductPrice() {
-        return productPrice;
+        return (float) price;
     }
 
     /**
-     * Sets the product price.
+     * Sets the product price as a float.
      *
-     * @param productPrice the product price
+     * @param price the product price as a float
      */
-    public void setProductPrice(float productPrice) {
-        this.productPrice = productPrice;
+    public void setProductPrice(float price) {
+        this.price = price;
+    }
+
+    /**
+     * Gets the delivery time.
+     *
+     * @return the delivery time
+     */
+    public String getDeliveryTime() {
+        return deliveryTime;
+    }
+
+    /**
+     * Sets the delivery time.
+     *
+     * @param deliveryTime the delivery time
+     */
+    public void setDeliveryTime(String deliveryTime) {
+        this.deliveryTime = deliveryTime;
     }
 
     /**
@@ -115,16 +149,16 @@ public class Product {
      * @return the product stock
      */
     public int getProductStock() {
-        return productStock;
+        return stock;
     }
 
     /**
      * Sets the product stock.
      *
-     * @param productStock the product stock
+     * @param stock the product stock
      */
-    public void setProductStock(int productStock) {
-        this.productStock = productStock;
+    public void setProductStock(int stock) {
+        this.stock = stock;
     }
 
     /**
@@ -133,16 +167,16 @@ public class Product {
      * @return the product category
      */
     public Category getProductCategory() {
-        return productCategory;
+        return category;
     }
 
     /**
      * Sets the product category.
      *
-     * @param productCategory the product category
+     * @param category the product category
      */
-    public void setProductCategory(Category productCategory) {
-        this.productCategory = productCategory;
+    public void setProductCategory(Category category) {
+        this.category = category;
     }
 
     /**
@@ -151,33 +185,39 @@ public class Product {
      * @return the product subcategory
      */
     public Category.Subcategory getProductSubCategory() {
-        return productSubCategory;
+        return subcategory;
     }
 
     /**
      * Sets the product subcategory.
      *
-     * @param productSubCategory the product subcategory
+     * @param subcategory the product subcategory
      */
-    public void setProductSubCategory(Category.Subcategory productSubCategory) {
-        this.productSubCategory = productSubCategory;
+    public void setProductSubCategory(Category.Subcategory subcategory) {
+        this.subcategory = subcategory;
     }
 
-    /**
-     * Gets the product images.
-     *
-     * @return the product images
-     */
-    public String[] getProductImage() {
-        return productImage;
+    public String getName() {
+        return name;
     }
 
-    /**
-     * Sets the product images.
-     *
-     * @param productImage the product images
-     */
-    public void setProductImage(String[] productImage) {
-        this.productImage = productImage;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
