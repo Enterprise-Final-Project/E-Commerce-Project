@@ -41,9 +41,10 @@ public class Product {
      * @param productStock the product stock
      * @param productCategory the product category
      * @param productSubCategory the product subcategory
+     * @param deliveryTime the delivery time
      */
     public Product(int productID, String productName, String productDescription, float productPrice, int productStock,
-            Category productCategory, Category.Subcategory productSubCategory) {
+            Category productCategory, Category.Subcategory productSubCategory, String deliveryTime) {
         this.id = Long.valueOf(productID);
         this.name = productName;
         this.description = productDescription;
@@ -51,24 +52,25 @@ public class Product {
         this.stock = productStock;
         this.category = productCategory;
         this.subcategory = productSubCategory;
+        this.deliveryTime = deliveryTime;
     }
 
     /**
-     * Gets the product ID as an integer.
+     * Gets the product ID as an Long.
      *
-     * @return the product ID as an integer
+     * @return the product ID as an Long
      */
-    public int getProductID() {
-        return id.intValue();
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Sets the product ID as an integer.
+     * Sets the product ID as an Long.
      *
-     * @param id the product ID as an integer
+     * @param id the product ID as an Long
      */
-    public void setProductID(int id) {
-        this.id = Long.valueOf(id);
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -76,7 +78,7 @@ public class Product {
      *
      * @return the product name
      */
-    public String getProductName() {
+    public String getName() {
         return name;
     }
 
@@ -85,7 +87,7 @@ public class Product {
      *
      * @param name the product name
      */
-    public void setProductName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -94,7 +96,7 @@ public class Product {
      *
      * @return the product description
      */
-    public String getProductDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -103,7 +105,7 @@ public class Product {
      *
      * @param description the product description
      */
-    public void setProductDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -112,7 +114,7 @@ public class Product {
      *
      * @return the product price as a float
      */
-    public float getProductPrice() {
+    public float getPrice() {
         return (float) price;
     }
 
@@ -121,7 +123,7 @@ public class Product {
      *
      * @param price the product price as a float
      */
-    public void setProductPrice(float price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -148,7 +150,7 @@ public class Product {
      *
      * @return the product stock
      */
-    public int getProductStock() {
+    public int getStock() {
         return stock;
     }
 
@@ -157,7 +159,7 @@ public class Product {
      *
      * @param stock the product stock
      */
-    public void setProductStock(int stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
@@ -166,7 +168,7 @@ public class Product {
      *
      * @return the product category
      */
-    public Category getProductCategory() {
+    public Category getCategory() {
         return category;
     }
 
@@ -175,7 +177,7 @@ public class Product {
      *
      * @param category the product category
      */
-    public void setProductCategory(Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -184,7 +186,7 @@ public class Product {
      *
      * @return the product subcategory
      */
-    public Category.Subcategory getProductSubCategory() {
+    public Category.Subcategory getSubCategory() {
         return subcategory;
     }
 
@@ -193,31 +195,7 @@ public class Product {
      *
      * @param subcategory the product subcategory
      */
-    public void setProductSubCategory(Category.Subcategory subcategory) {
+    public void setSubCategory(Category.Subcategory subcategory) {
         this.subcategory = subcategory;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 }

@@ -115,12 +115,16 @@ public class EcommerceController {
     }
 
     /**
-     * Handles requests to the product details page.
+     * Handles requests to the product details page with a specific product ID.
      *
+     * @param id the product ID
+     * @param model the model to hold product details
      * @return the name of the product details page view
      */
     @GetMapping("/product_details")
-    public String product_details() {
+    public String product_details(@RequestParam("id") Long id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
         return "product_details";
     }
 

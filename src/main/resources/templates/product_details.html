@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+  <head>
     <head th:replace="fragments/header :: header"></head>
-        <!--- should probably add name of product + dash-->
-        <title>Product Details</title>
-    </head>
-    <body>
+    <title th:text="${product.name} + ' - Product Details'">
+      Product Details
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
     <div>
-        <!--- navbar and account bar -->
-        <div th:replace="fragments/navbar :: navbar"></div>
-
+      <div th:replace="fragments/navbar :: navbar"></div>
     </div>
-        <div class="col-4">
-            <!-- make this not appear if there's only one image tied to this...do we tie multiple images-->
-            <ul>
-                <li>image</li>
-                <li>image</li>
-                <li>image</li>
-                <li>image</li>
-            </ul>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h1 th:text="${product.name}">Product Name</h1>
+            </div>
+            <div class="card-body">
+              <p th:text="${product.description}">description</p>
+              <p th:text="'Price: $' + ${product.price}">price</p>
+              <p th:text="'Quantity: ' + ${product.stock}">quantity</p>
+              <p th:text="'Delivery Time: ' + ${product.deliveryTime}">
+                delivery time
+              </p>
+              <button class="btn btn-primary">Add to Cart</button>
+              <button class="btn btn-secondary">Add to Wishlist</button>
+            </div>
+          </div>
         </div>
-        <div class="col-4">
-            <h1>Product Name</h1>
-            <img src="product_img.link"></img>
-            <p>star rating</p>
-            <p>short description</p>
-            <p>description</p>
-            
-            <p></p>
-        </div>
-        <div class="col-4">
-            <p>price</p>
-            <p>quanity</p>
-            <p>add to cart</p>
-            <p>add to wishlist</p>
-            <p>shipping details</p>
-        </div>
-    <!-- Include the footer -->
+      </div>
+    </div>
     <div th:replace="fragments/footer :: footer"></div>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
 </html>
