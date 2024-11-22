@@ -1,7 +1,11 @@
 package com.ecommerce.ECommerceApp.controller;
 
+import java.text.AttributedString;
 import java.util.List;
 
+import com.ecommerce.ECommerceApp.model.CartItem;
+import com.ecommerce.ECommerceApp.repository.CartItemRepository;
+import com.ecommerce.ECommerceApp.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,9 +74,16 @@ public class EcommerceController {
      * @return the name of the cart page view
      */
     @GetMapping("/cart")
-    public String cart() {
+    public String cart(Model model) {
+
+
+        List<Product> products  = productService.getAllProducts();
+
+        model.addAttribute("CartItems", products);
+
         return "cart";
     }
+
 
     /**
      * Handles requests to the checkout page.

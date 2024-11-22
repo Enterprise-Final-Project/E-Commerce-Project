@@ -1,2 +1,25 @@
-/Users/nathanburns/Developer/E-Commerce-Project/src/main/java/com/ecommerce/ECommerceApp/config/SecurityConfig.java
-/Users/nathanburns/Developer/E-Commerce-Project/src/main/java/com/ecommerce/ECommerceApp/ECommerceAppApplication.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\EcommerceController.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Review.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Order.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Address.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\AccountType.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\CartItemRepository.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PaymentStatus.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Payment.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Email.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\ShippingDetails.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\ECommerceAppApplication.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\ProductService.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Seller.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\config\SecurityConfig.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Category.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\ShippingType.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Buyer.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\User.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Admin.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\CartService.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Product.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\ProductRepository.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\CartItem.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PaymentType.java
+C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PhoneNumber.java

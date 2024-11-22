@@ -111,9 +111,11 @@ WHERE NOT EXISTS (SELECT 1 FROM shipping_details WHERE shippingAddress = '456 El
 
 -- Create table for CartItem
 CREATE TABLE IF NOT EXISTS cart_item (
-    productID INT,
+    ItemID Int Primary Key,
+    productID  BIGINT ,
     quantity INT,
-    price DOUBLE
+    price DOUBLE,
+    foreign key (productID) References product(id)
 );
 
 -- Insert test data into CartItem table
