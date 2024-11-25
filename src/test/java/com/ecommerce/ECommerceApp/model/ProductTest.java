@@ -1,7 +1,5 @@
 package com.ecommerce.ECommerceApp.model;
 
-import java.util.Objects;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,9 +20,9 @@ public class ProductTest {
             "description", 
             3.0f, 
             1, 
-            Category.ELECTRONICS, 
-            Category.Subcategory.SMARTPHONE,
-            "1-2 days"
+            "clothing",
+                    "shirt"
+                    
         );
     }
 
@@ -33,8 +31,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductID() {
-        product.setId(Long.valueOf(1));
-        assert Objects.equals(product.getId(), Long.valueOf(1));
+        product.setProductID(1);
+        assert product.getProductID() == 1;
     }
 
     /**
@@ -42,8 +40,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductID() {
-        product.setId(Long.valueOf(1));
-        assert Objects.equals(product.getId(), Long.valueOf(1));
+        product.setProductID(1);
+        assert product.getProductID() == 1;
     }
 
     /**
@@ -51,8 +49,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductName() {
-        product.setName("product");
-        assert product.getName().equals("product");
+        product.setProductName("product");
+        assert product.getProductName().equals("product");
     }
 
     /**
@@ -60,8 +58,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductName() {
-        product.setName("product");
-        assert product.getName().equals("product");
+        product.setProductName("product");
+        assert product.getProductName().equals("product");
     }
 
     /**
@@ -69,8 +67,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductDescription() {
-        product.setDescription("description");
-        assert product.getDescription().equals("description");
+        product.setProductDescription("description");
+        assert product.getProductDescription().equals("description");
     }
 
     /**
@@ -78,8 +76,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductDescription() {
-        product.setDescription("description");
-        assert product.getDescription().equals("description");
+        product.setProductDescription("description");
+        assert product.getProductDescription().equals("description");
     }
 
     /**
@@ -87,8 +85,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductPrice() {
-        product.setPrice(3.0f);
-        assert product.getPrice() == 3.0f;
+        product.setProductPrice(3.0f);
+        assert product.getProductPrice() == 3.0f;
     }
 
     /**
@@ -96,8 +94,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductPrice() {
-        product.setPrice(3.0f);
-        assert product.getPrice() == 3.0f;
+        product.setProductPrice(3.0f);
+        assert product.getProductPrice() == 3.0f;
     }
 
     /**
@@ -105,8 +103,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductStock() {
-        product.setStock(1);
-        assert product.getStock() == 1;
+        product.setProductStock(1);
+        assert product.getProductStock() == 1;
     }
 
     /**
@@ -114,8 +112,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductStock() {
-        product.setStock(1);
-        assert product.getStock() == 1;
+        product.setProductStock(1);
+        assert product.getProductStock() == 1;
     }
 
     /**
@@ -123,8 +121,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductCategory() {
-        product.setCategory(Category.ELECTRONICS);
-        assert product.getCategory().equals(Category.ELECTRONICS);
+        product.setCategory("clothing");
+        assert product.getCategory().equals("clothing");
     }
 
     /**
@@ -132,8 +130,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductCategory() {
-        product.setCategory(Category.ELECTRONICS);
-        assert product.getCategory().equals(Category.ELECTRONICS);
+        product.setCategory("clothing");
+        assert product.getCategory().equals("clothing");
     }
 
     /**
@@ -141,8 +139,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductSubCategory() {
-        product.setSubCategory(Category.Subcategory.SMARTPHONE);
-        assert product.getSubCategory().equals(Category.Subcategory.SMARTPHONE);
+        product.setSubCategory("phone");
+        assert product.getSubCategory().equals("phone");
     }
 
     /**
@@ -150,7 +148,7 @@ public class ProductTest {
      */
     @Test
     public void testSetProductSubCategory() {
-        product.setSubCategory(Category.Subcategory.SMARTPHONE);
-        assert product.getSubCategory().equals(Category.Subcategory.SMARTPHONE);
+        product.setSubCategory("phone");
+        assert product.getSubCategory().equals("phone");
     }
 }

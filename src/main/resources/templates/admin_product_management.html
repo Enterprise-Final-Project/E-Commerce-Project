@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/header :: header">
+    <title>Admin Product Management</title>
+</head>
+
+<body style="margin: 0; padding: 0; ">
+
+<div style="width: 100%; padding: 20px; display: flex; flex-direction: column; align-items: center;">
+
+    <div th:replace="fragments/navbar :: navbar" style="width: 100%; margin-bottom: 20px;"></div>
+
+</div>
+
+    <h1 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">Admin Product Management<h1>
+
+        <button id="addProductBtn" type="button" class="btn btn-primary"  style="padding: 10px 20px; font-size: 16px; cursor: pointer; margin-bottom: 20px;">Add Product</button>
+
+        <table style="width: 80%; margin-bottom: 20px; ">
+            <thead>
+                <tr>
+                    <th style="padding: 10px; text-align: center;">Product ID</th>
+                    <th style="padding: 10px; text-align: center;">Product Name</th>
+                    <th style="padding: 10px; text-align: center;">Price</th>
+                    <th style="padding: 10px; text-align: center;">Quantity</th>
+                    <th style="padding: 10px; text-align: center;">Category</th>
+                    <th style="padding: 10px; text-align: center;">Actions</th>
+                </tr>
+            </thead>
+        
+
+        <tbody id="productTabel" style="text-align: center;">
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}" style="padding: 10px;"></td>
+                <td th:text="${product.name}" style="padding: 10px;"></td>
+                <td th:text="${product.price}" style="padding: 10px;"></td>
+                <td th:text="${product.quantity}" style="padding: 10px;"></td>
+                <td th:text="${product.category}" style="padding: 10px;"></td>
+                <td style="padding: 10px;">
+                    <button id="editProductBtn" type="button" class="btn btn-primary" th:attr="data-id=${product.id}" style="padding: 5px 15px;">Edit</button>
+                    <button id="deleteProductBtn" type="button" class="btn btn-danger" th:attr="data-id${product.id}" style="pad: 5px 15px;">Delete</button>
+                </td>
+            </tr>
+
+            <div th:replace="fragments/footer :: footer" style="width: 100%; margin-top: 20px;"></div>
+        </tbody>
+        </table>
+
+        <div id="addProductModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2 id="modalTitle">Add Product</h2>
+                <form id="productForm">
+                    
+                    <input type="hidden" id="productId" name="id">
+
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" required>
+
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" required>
+
+                    <button id="submitProductBtn" type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+        </div>
+</body>
+</html>

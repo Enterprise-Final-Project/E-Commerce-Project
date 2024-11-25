@@ -18,15 +18,15 @@ public class BuyerTest {
     @BeforeEach
     public void setUp() {
         buyer = new Buyer(
+                true,
                 "John",
                 "Doe",
-                new PhoneNumber("1234567890"),
-                new Email("test@mail.com"),
+                "test@mail.com",
                 "password123",
-                new Address("123 Main St", "City", "State", "12345", "Country"),
-                new Address("456 Elm St", "City", "State", "12345", "Country"),
-                new Payment(1, PaymentType.CREDIT, PaymentStatus.APPROVED),
-                AccountType.BUYER,
+                "123 Main St, Apt 1",
+                "456 Elm St, Apt 2",
+                1,
+                "BUYER",
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>()
