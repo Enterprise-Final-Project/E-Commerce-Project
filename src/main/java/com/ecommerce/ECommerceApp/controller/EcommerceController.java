@@ -4,8 +4,11 @@ import java.text.AttributedString;
 import java.util.List;
 
 import com.ecommerce.ECommerceApp.model.CartItem;
+import com.ecommerce.ECommerceApp.model.WishListItem;
 import com.ecommerce.ECommerceApp.repository.CartItemRepository;
 import com.ecommerce.ECommerceApp.repository.ProductRepository;
+import com.ecommerce.ECommerceApp.service.CartService;
+import com.ecommerce.ECommerceApp.service.WishListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,13 @@ public class EcommerceController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private WishListService wishListService;
+
 
     /**
      * Handles requests to the landing page.
@@ -77,9 +87,9 @@ public class EcommerceController {
     public String cart(Model model) {
 
 
-        List<Product> products  = productService.getAllProducts();
+        List<CartItem> items  = cartService.getAllItems();
 
-        model.addAttribute("CartItems", products);
+        model.addAttribute("CartItems", items);
 
         return "cart";
     }
@@ -161,8 +171,14 @@ public class EcommerceController {
      * @return the name of the wishlist page view
      */
     @GetMapping("/wishlist")
-    public String wishlist() {
+    public String wishlist(Model model) {
+
+        List<WishListItem> items  = wishListService.getAllItems();
+
+        model.addAttribute("wishListItems", items);
+
         return "wishlist";
+
     }
 
     /**
