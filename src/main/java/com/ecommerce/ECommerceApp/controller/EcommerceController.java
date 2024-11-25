@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ecommerce.ECommerceApp.model.CartItem;
 import com.ecommerce.ECommerceApp.model.Product;
 import com.ecommerce.ECommerceApp.model.User;
+import com.ecommerce.ECommerceApp.model.WishListItem;
+import com.ecommerce.ECommerceApp.service.CartService;
 import com.ecommerce.ECommerceApp.service.ProductService;
 import com.ecommerce.ECommerceApp.service.UserService;
+import com.ecommerce.ECommerceApp.service.WishListService;
 
 /**
  * Controller class for handling e-commerce related requests.
@@ -27,6 +31,12 @@ public class EcommerceController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private WishListService wishListService;
 
     @Autowired
     private UserService userService;
@@ -83,9 +93,16 @@ public class EcommerceController {
      * @return the name of the cart page view
      */
     @GetMapping("/cart")
-    public String cart() {
+    public String cart(Model model) {
+
+
+        List<CartItem> items  = cartService.getAllItems();
+
+        model.addAttribute("CartItems", items);
+
         return "cart";
     }
+
 
     /**
      * Handles requests to the checkout page.
@@ -167,8 +184,14 @@ public class EcommerceController {
      * @return the name of the wishlist page view
      */
     @GetMapping("/wishlist")
-    public String wishlist() {
+    public String wishlist(Model model) {
+
+        List<WishListItem> items  = wishListService.getAllItems();
+
+        model.addAttribute("wishListItems", items);
+
         return "wishlist";
+
     }
 
     /**

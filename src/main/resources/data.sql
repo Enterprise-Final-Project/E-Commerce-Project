@@ -117,9 +117,11 @@ WHERE NOT EXISTS (SELECT 1 FROM shipping_details WHERE shippingAddress = '456 El
 
 -- Create table for CartItem
 CREATE TABLE IF NOT EXISTS cart_item (
-    productID INT,
+    ItemID Int Auto_Increment Primary Key,
+    productID  BIGINT ,
     quantity INT,
-    price DOUBLE
+    price DOUBLE,
+    foreign key (productID) References product(id)
 );
 
 -- Insert test data into CartItem table
@@ -129,3 +131,22 @@ WHERE NOT EXISTS (SELECT 1 FROM cart_item WHERE productID = 1 AND quantity = 2 A
 INSERT INTO cart_item (productID, quantity, price)
 SELECT 2, 1, 29.99
 WHERE NOT EXISTS (SELECT 1 FROM cart_item WHERE productID = 2 AND quantity = 1 AND price = 29.99);
+
+
+
+-- Create table for WishlistItem
+CREATE TABLE IF NOT EXISTS wishlist_Item (
+ItemID Int Auto_Increment Primary Key,
+productID  BIGINT ,
+quantity INT,
+price DOUBLE,
+foreign key (productID) References product(id)
+);
+
+-- Insert test data into CartItem table
+INSERT INTO wishlist_Item (productID, quantity, price)
+SELECT 1, 2, 19.99
+WHERE NOT EXISTS (SELECT 1 FROM wishlist_Item WHERE productID = 1 AND quantity = 2 AND price = 19.99);
+INSERT INTO wishlist_Item (productID, quantity, price)
+SELECT 2, 1, 29.99
+WHERE NOT EXISTS (SELECT 1 FROM wishlist_Item WHERE productID = 2 AND quantity = 1 AND price = 29.99);

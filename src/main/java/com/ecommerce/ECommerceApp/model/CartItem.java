@@ -2,12 +2,23 @@ package com.ecommerce.ECommerceApp.model;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
 /**
  * Represents an item in the shopping cart.
  */
+@Entity
 @Component
+@Table(name="cart_item")
 public class CartItem {
-    private int productID;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Itemid;
+
+    @ManyToOne
+    @JoinColumn(name = "productID", referencedColumnName = "id")
+    private Product product;
     private int quantity;
     private double price;
 
@@ -16,17 +27,17 @@ public class CartItem {
      *
      * @return the product ID
      */
-    public int getProductID() {
-        return productID;
+    public Product getProduct() {
+        return product;
     }
 
     /**
      * Sets the product ID.
      *
-     * @param productID the product ID
+     * @param product the product
      */
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     /**
