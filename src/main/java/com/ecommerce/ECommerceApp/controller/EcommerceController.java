@@ -1,14 +1,7 @@
 package com.ecommerce.ECommerceApp.controller;
 
-import java.text.AttributedString;
 import java.util.List;
 
-import com.ecommerce.ECommerceApp.model.CartItem;
-import com.ecommerce.ECommerceApp.model.WishListItem;
-import com.ecommerce.ECommerceApp.repository.CartItemRepository;
-import com.ecommerce.ECommerceApp.repository.ProductRepository;
-import com.ecommerce.ECommerceApp.service.CartService;
-import com.ecommerce.ECommerceApp.service.WishListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ecommerce.ECommerceApp.model.CartItem;
 import com.ecommerce.ECommerceApp.model.Product;
 import com.ecommerce.ECommerceApp.model.User;
+import com.ecommerce.ECommerceApp.model.WishListItem;
+import com.ecommerce.ECommerceApp.service.CartService;
 import com.ecommerce.ECommerceApp.service.ProductService;
 import com.ecommerce.ECommerceApp.service.UserService;
+import com.ecommerce.ECommerceApp.service.WishListService;
 
 /**
  * Controller class for handling e-commerce related requests.
@@ -41,6 +38,7 @@ public class EcommerceController {
     @Autowired
     private WishListService wishListService;
 
+    @Autowired
     private UserService userService;
 
     /**
