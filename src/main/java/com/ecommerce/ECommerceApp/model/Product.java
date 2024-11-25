@@ -160,29 +160,11 @@ public class Product {
     }
 
     /**
-     * Gets the product category.
-     *
-     * @return the product category
-     */
-    public String getProductCategory() {
-        return category;
-    }
-
-    /**
-     * Sets the product category.
-     *
-     * @param category the product category
-     */
-    public void setProductCategory(String category) {
-        this.category = category;
-    }
-
-    /**
      * Gets the product subcategory.
      *
      * @return the product subcategory
      */
-    public String getProductSubCategory() {
+    public String getSubCategory() {
         return subcategory;
     }
 
@@ -191,7 +173,7 @@ public class Product {
      *
      * @param subcategory the product subcategory
      */
-    public void setProductSubCategory(String subcategory) {
+    public void setSubCategory(String subcategory) {
         this.subcategory = subcategory;
     }
 

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.ecommerce.ECommerceApp.model.Product;
 import com.ecommerce.ECommerceApp.repository.ProductRepository;
 
+/**
+ * Service class for managing products.
+ */
 @Service
 public class ProductService {
 
@@ -18,6 +21,12 @@ public class ProductService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
+    /**
+     * Searches for products that contain the given query in their name.
+     *
+     * @param query the search query
+     * @return a list of products that match the search query
+     */
     /**
      * Searches for products that contain the given query in their name.
      *
@@ -36,6 +45,11 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * Retrieves all products.
+     *
+     * @return a list of all products
+     */
     /**
      * Retrieves all products.
      *
@@ -61,5 +75,15 @@ public class ProductService {
      */
     public void deleteProduct(Long productId) {
         productRepository.deleteById(productId);
+    }
+
+    /**
+     * Retrieves a product by its ID.
+     *
+     * @param id the ID of the product
+     * @return the product with the given ID, or null if not found
+     */
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
     }
 }

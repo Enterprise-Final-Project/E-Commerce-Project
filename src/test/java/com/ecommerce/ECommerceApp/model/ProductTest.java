@@ -121,8 +121,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductCategory() {
-        product.setProductCategory("clothing");
-        assert product.getProductCategory().equals("clothing");
+        product.setCategory("clothing");
+        assert product.getCategory().equals("clothing");
     }
 
     /**
@@ -130,8 +130,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductCategory() {
-        product.setProductCategory("clothing");
-        assert product.getProductCategory().equals("clothing");
+        product.setCategory("clothing");
+        assert product.getCategory().equals("clothing");
     }
 
     /**
@@ -139,8 +139,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductSubCategory() {
-        product.setProductSubCategory("phone");
-        assert product.getProductSubCategory().equals("phone");
+        product.setSubCategory("phone");
+        assert product.getSubCategory().equals("phone");
     }
 
     /**
@@ -148,7 +148,7 @@ public class ProductTest {
      */
     @Test
     public void testSetProductSubCategory() {
-        product.setProductSubCategory("phone");
-        assert product.getProductSubCategory().equals("phone");
+        product.setSubCategory("phone");
+        assert product.getSubCategory().equals("phone");
     }
 }

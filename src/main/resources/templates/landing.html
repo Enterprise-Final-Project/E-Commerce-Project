@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-  <head th:replace="fragments/header :: header"></head>
+  <head th:replace="fragments/header :: header">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
   <body>
     <div>
       <!--- navbar and account bar -->
@@ -8,11 +13,11 @@
     </div>
     <div class="container">
       <div class="container mt-5">
-        <div class="row">
+        <div class="row justify-content-center">
           <form
             th:action="@{/search}"
             method="get"
-            class="input-group input-group-lg"
+            class="input-group input-group-lg col-md-8"
           >
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroup-sizing-lg"
@@ -52,7 +57,7 @@
               <div
                 th:if="${searchResults != null}"
                 th:each="product : ${searchResults}"
-                class="col"
+                class="col mb-4"
               >
                 <div class="card h-100 shadow-sm text-center">
                   <div class="card-body">
@@ -78,6 +83,12 @@
                     </li>
                   </ul>
                   <div class="card-body d-flex flex-column align-items-center">
+                    <a
+                      th:href="@{/product_details(id=${product.id})}"
+                      class="card-link"
+                      style="margin: 0"
+                      >View Details</a
+                    >
                     <a href="#" class="card-link" style="margin: 0"
                       >Add to Wishlist</a
                     >
@@ -90,7 +101,7 @@
               <div
                 th:if="${searchResults == null}"
                 th:each="product : ${products}"
-                class="col"
+                class="col mb-4"
               >
                 <div class="card h-100 shadow-sm text-center">
                   <div class="card-body">
@@ -116,6 +127,12 @@
                     </li>
                   </ul>
                   <div class="card-body d-flex flex-column align-items-center">
+                    <a
+                      th:href="@{/product_details(id=${product.id})}"
+                      class="card-link"
+                      style="margin: 0"
+                      >View Details</a
+                    >
                     <a href="#" class="card-link" style="margin: 0"
                       >Add to Wishlist</a
                     >
@@ -132,5 +149,8 @@
     </div>
     <!-- footer -->
     <div class="footer" th:replace="fragments/footer :: footer"></div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
