@@ -49,7 +49,6 @@ public class Product {
         this.stock = productStock;
         this.category = productCategory;
         this.subcategory = productSubCategory;
-        this.deliveryTime = deliveryTime;
     }
 
     /**
