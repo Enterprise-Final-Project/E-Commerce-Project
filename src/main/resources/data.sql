@@ -23,26 +23,32 @@ WHERE NOT EXISTS (SELECT 1 FROM product WHERE name = 'Jacket');
 
 -- Create table for User
 CREATE TABLE IF NOT EXISTS user (
-    userID VARCHAR(36) PRIMARY KEY,
+    userID BIGINT AUTO_INCREMENT PRIMARY KEY,
     active BOOLEAN,
-    firstName VARCHAR(255),
-    lastName VARCHAR(255),
-    phoneNumber VARCHAR(255),
-    email VARCHAR(255),
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    phone_number VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     password VARCHAR(255),
-    mailingAddress VARCHAR(255),
-    shippingAddress VARCHAR(255),
-    paymentMethod INT,
-    accountType VARCHAR(255),
-    UNIQUE (email)
+    mailing_address VARCHAR(255),
+    shipping_address VARCHAR(255),
+    payment_method INT,
+    account_type VARCHAR(255)
 );
 
 -- Insert test data into User table
-INSERT INTO user (userID, active, firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod, accountType)
-SELECT '1', TRUE, 'John', 'Doe', '123-456-7890', 'john.doe@example.com', 'password123', '123 Main St', '123 Main St', 1, 'BUYER'
+
+/* 
+paymentid
+payment_status
+payment_type */
+
+
+INSERT INTO user (active, first_name, last_name, phone_number, email, password, mailing_address, shipping_address, payment_method, account_type)
+SELECT TRUE, 'John', 'Doe', '123-456-7890', 'john.doe@example.com', 'password123', '123 Main St', '123 Main St', '1', 'ADMIN'
 WHERE NOT EXISTS (SELECT 1 FROM user WHERE email = 'john.doe@example.com');
-INSERT INTO user (userID, active, firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod, accountType)
-SELECT '2', TRUE, 'Jane', 'Smith', '098-765-4321', 'jane.smith@example.com', 'password456', '456 Elm St', '456 Elm St', 2, 'SELLER'
+INSERT INTO user (active, first_name, last_name, phone_number, email, password, mailing_address, shipping_address, payment_method, account_type)
+SELECT TRUE, 'Jane', 'Smith', '098-765-4321', 'jane.smith@example.com', 'password456', '456 Elm St', '456 Elm St', '2', 'USER'
 WHERE NOT EXISTS (SELECT 1 FROM user WHERE email = 'jane.smith@example.com');
 
 -- Create table for Payment
@@ -65,7 +71,7 @@ WHERE NOT EXISTS (SELECT 1 FROM payment WHERE paymentType = 'DEBIT');
 CREATE TABLE IF NOT EXISTS `order` (
     orderID INT PRIMARY KEY,
     orderDate TIMESTAMP,
-    userID VARCHAR(36),
+    userID BIGINT,
     totalAmount FLOAT,
     FOREIGN KEY (userID) REFERENCES user(userID)
 );

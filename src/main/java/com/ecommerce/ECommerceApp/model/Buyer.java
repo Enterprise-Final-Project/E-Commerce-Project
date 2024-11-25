@@ -7,11 +7,11 @@ public class Buyer extends User {
     public List<Integer> orderHistory;
     public List<Integer> wishList;
 
-    public Buyer(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType, List<Integer> cart, List<Integer> orderHistory, List<Integer> wishList) {
-        super(firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod, accountType);
-        this.cart = new ArrayList<>();
-        this.orderHistory = new ArrayList<>();
-        this.wishList = new ArrayList<>();
+    public Buyer(Boolean active, String firstName, String lastName, String email, String password, String mailingAddress, String shippingAddress, Integer paymentMethod, String accountType, List<Integer> cart, List<Integer> orderHistory, List<Integer> wishList) {
+        super(active, firstName, lastName, email, password, mailingAddress, shippingAddress, paymentMethod, accountType);
+        this.cart = cart != null ? cart : new ArrayList<>();
+        this.orderHistory = orderHistory != null ? orderHistory : new ArrayList<>();
+        this.wishList = wishList != null ? wishList : new ArrayList<>();
     }
 
     /**

@@ -1,47 +1,70 @@
 package com.ecommerce.ECommerceApp.model;
 
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Represents a user in the e-commerce application.
  */
+@Entity
 public class User {
 
-    // db details
-    public String userID;
-    public Boolean active;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userID; // Change to Long for auto-generation
 
-    // user account details
-    public String firstName;
-    public String lastName;
-    public PhoneNumber phoneNumber;
-    public Email email;
-    protected String password;
+    private Boolean active;
 
-    // payment details
-    public Address mailingAddress;
-    public Address shippingAddress;
-    public Payment paymentMethod;
-    public AccountType accountType;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "mailing_address")
+    private String mailingAddress;
+
+    @Column(name = "shipping_address")
+    private String shippingAddress;
+
+    @Column(name = "payment_method")
+    private Integer paymentMethod;
+
+    @Column(name = "account_type")
+    private String accountType;
+
+    /**
+     * Default constructor.
+     */
+    public User() {
+    }
 
     /**
      * Constructs a new User with the specified details.
      *
+     * @param active the active status of the user
      * @param firstName the first name of the user
      * @param lastName the last name of the user
-     * @param phoneNumber the phone number of the user
-     * @param email the email address of the user
+     * @param email the email of the user
      * @param password the password of the user
      * @param mailingAddress the mailing address of the user
      * @param shippingAddress the shipping address of the user
      * @param paymentMethod the payment method of the user
      * @param accountType the account type of the user
      */
-    public User(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType) {
-        this.userID = generateUniqueID();
+    public User(Boolean active, String firstName, String lastName, String email, String password, String mailingAddress, String shippingAddress, Integer paymentMethod, String accountType) {
+        this.active = active;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
         this.mailingAddress = mailingAddress;
@@ -55,26 +78,161 @@ public class User {
      *
      * @return the user ID
      */
-    public String getUserID() {
+    public Long getUserID() {
         return this.userID;
+    }
+
+    /**
+     * Sets the user ID.
+     *
+     * @param userID the user ID
+     */
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     /**
      * Gets the first name of the user.
      *
-     * @return the first name of the user
+     * @return the first name
      */
     public String getFirstName() {
         return this.firstName;
     }
 
     /**
+     * Sets the first name of the user.
+     *
+     * @param firstName the first name
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
      * Gets the full name of the user.
      *
-     * @return the full name of the user
+     * @return the full name
      */
     public String getFullName() {
         return this.firstName + " " + this.lastName;
+    }
+
+    /**
+     * Checks if the user is active.
+     *
+     * @return true if the user is active, false otherwise
+     */
+    public boolean isActive() {
+        return this.active;
+    }
+
+    /**
+     * Gets the password of the user.
+     *
+     * @return the password
+     */
+    public String getPassword() {
+        return this.password;
+    }
+
+    /**
+     * Sets the password of the user.
+     *
+     * @param password the password
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * Gets the mailing address of the user.
+     *
+     * @return the mailing address
+     */
+    public String getMailingAddress() {
+        return this.mailingAddress;
+    }
+
+    /**
+     * Sets the mailing address of the user.
+     *
+     * @param mailingAddress the mailing address
+     */
+    public void setMailingAddress(String mailingAddress) {
+        this.mailingAddress = mailingAddress;
+    }
+
+    /**
+     * Gets the shipping address of the user.
+     *
+     * @return the shipping address
+     */
+    public String getShippingAddress() {
+        return this.shippingAddress;
+    }
+
+    /**
+     * Sets the shipping address of the user.
+     *
+     * @param shippingAddress the shipping address
+     */
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    /**
+     * Gets the payment method of the user.
+     *
+     * @return the payment method
+     */
+    public Integer getPaymentMethod() {
+        return this.paymentMethod;
+    }
+
+    /**
+     * Sets the payment method of the user.
+     *
+     * @param paymentMethod the payment method
+     */
+    public void setPaymentMethod(Integer paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    /**
+     * Gets the account type of the user.
+     *
+     * @return the account type
+     */
+    public String getAccountType() {
+        return this.accountType;
+    }
+
+    /**
+     * Gets the email of the user.
+     *
+     * @return the email
+     */
+    public String getEmail() {
+        return this.email;
+    }
+
+    /**
+     * Gets the last name of the user.
+     *
+     * @return the last name
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Sets the last name of the user.
+     *
+     * @param lastName the last name
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**
@@ -93,58 +251,5 @@ public class User {
      */
     protected void setActive(boolean active) {
         this.active = active;
-    }
-
-    /**
-     * Updates the user's information.
-     *
-     * @param firstName the first name of the user
-     * @param lastName the last name of the user
-     * @param phoneNumber the phone number of the user
-     * @param email the email address of the user
-     * @param password the password of the user
-     * @param mailingAddress the mailing address of the user
-     * @param shippingAddress the shipping address of the user
-     * @param paymentMethod the payment method of the user
-     * @param accountType the account type of the user
-     */
-    protected void updateInformation(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType) {
-        // if fields are left blank, they will not update
-        if (firstName != null && !firstName.isBlank()) {
-            this.firstName = firstName;
-        }
-        if (lastName != null && !lastName.isBlank()) {
-            this.lastName = lastName;
-        }
-        if (phoneNumber != null) {
-            this.phoneNumber = phoneNumber;
-        }
-        if (email != null) {
-            this.email = email;
-        }
-        if (password != null && !password.isBlank()) {
-            this.password = password;
-        }
-        if (mailingAddress != null) {
-            this.mailingAddress = mailingAddress;
-        }
-        if (shippingAddress != null) {
-            this.shippingAddress = shippingAddress;
-        }
-        if (paymentMethod != null) {
-            this.paymentMethod = paymentMethod;
-        }
-        if (accountType != null) {
-            this.accountType = accountType;
-        }
-    }
-
-    /**
-     * Generates a unique UUID for the user.
-     *
-     * @return the unique UUID
-     */
-    private String generateUniqueID() {
-        return UUID.randomUUID().toString();
     }
 }

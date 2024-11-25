@@ -1,13 +1,28 @@
 package com.ecommerce.ECommerceApp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 /**
  * Represents a payment in the e-commerce application.
  */
+@Embeddable
 public class Payment {
     
-    private int paymentID;
-    private PaymentType paymentType;
+    @Column(name = "paymentID")
+    private Integer paymentID;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "paymentStatus")
     private PaymentStatus paymentStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "paymentType")
+    private PaymentType paymentType;
+
+    // Default constructor
+    public Payment() {
+    }
 
     /**
      * Constructor for Payment.

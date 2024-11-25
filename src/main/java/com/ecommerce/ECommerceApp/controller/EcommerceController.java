@@ -15,10 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ecommerce.ECommerceApp.model.Product;
+import com.ecommerce.ECommerceApp.model.User;
 import com.ecommerce.ECommerceApp.service.ProductService;
+import com.ecommerce.ECommerceApp.service.UserService;
 
 /**
  * Controller class for handling e-commerce related requests.
@@ -37,6 +41,7 @@ public class EcommerceController {
     @Autowired
     private WishListService wishListService;
 
+    private UserService userService;
 
     /**
      * Handles requests to the landing page.
@@ -71,10 +76,16 @@ public class EcommerceController {
     /**
      * Handles requests to the admin page.
      *
+     * @param model the model to hold admin data
      * @return the name of the admin page view
      */
     @GetMapping("/admin")
-    public String admin() {
+    public String admin(Model model) {
+        List<User> users = userService.getAllUsers();
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("users", users);
+        model.addAttribute("products", products);
+        model.addAttribute("product", new Product()); // Add this line
         return "admin";
     }
 
@@ -136,12 +147,16 @@ public class EcommerceController {
     }
 
     /**
-     * Handles requests to the product details page.
+     * Handles requests to the product details page with a specific product ID.
      *
+     * @param id the product ID
+     * @param model the model to hold product details
      * @return the name of the product details page view
      */
     @GetMapping("/product_details")
-    public String product_details() {
+    public String product_details(@RequestParam("id") Long id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
         return "product_details";
     }
 
@@ -182,6 +197,16 @@ public class EcommerceController {
     }
 
     /**
+     * Handles requests to the admin product management page.
+     *
+     * @return the name of the admin product management page view
+     */
+    @GetMapping("/admin_product_management")
+    public String admin_product_management() {
+        return "admin_product_management";
+    }
+
+    /**
      * Handles search requests.
      *
      * @param query the search query
@@ -202,4 +227,39 @@ public class EcommerceController {
         return "landing";
     }
 
+    /**
+     * Handles requests to update a product.
+     *
+     * @param product the product to be updated
+     * @return a redirect to the admin page
+     */
+    @PostMapping("/admin/updateProduct")
+    public String updateProduct(@ModelAttribute Product product) {
+        productService.updateProduct(product);
+        return "redirect:/admin";
+    }
+
+    /**
+     * Handles requests to delete a product.
+     *
+     * @param productId the ID of the product to be deleted
+     * @return a redirect to the admin page
+     */
+    @PostMapping("/admin/deleteProduct")
+    public String deleteProduct(@RequestParam Long productId) {
+        productService.deleteProduct(productId);
+        return "redirect:/admin";
+    }
+
+    /**
+     * Handles requests to add a new product.
+     *
+     * @param product the product to be added
+     * @return a redirect to the admin page
+     */
+    @PostMapping("/admin/addProduct")
+    public String addProduct(@ModelAttribute Product product) {
+        productService.updateProduct(product);
+        return "redirect:/admin";
+    }
 }
