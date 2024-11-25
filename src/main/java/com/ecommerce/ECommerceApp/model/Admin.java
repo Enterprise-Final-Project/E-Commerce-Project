@@ -21,11 +21,9 @@ public class Admin extends User {
      * @param accountType the account type of the admin
      * @param adminLevel the admin level of the admin
      */
-    public Admin(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password,
-            Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType,
-            String adminLevel) {
-        super(firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod,
-                accountType);
+    public Admin(Boolean active, String firstName, String lastName, String email, String password, String mailingAddress, String shippingAddress, Integer paymentMethod, String accountType, String adminLevel) {
+        super(active, firstName, lastName, email, password, mailingAddress, shippingAddress,
+                paymentMethod, accountType);
         this.adminLevel = adminLevel;
     }
 
