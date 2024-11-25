@@ -18,6 +18,12 @@ public class ProductService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
+    /**
+     * Searches for products that contain the given query in their name.
+     *
+     * @param query the search query
+     * @return a list of products that match the search query
+     */
     public List<Product> searchProducts(String query) {
         logger.info("Searching for products with query: {}", query);
         List<Product> products = productRepository.findByNameContainingIgnoreCase(query);
@@ -30,7 +36,30 @@ public class ProductService {
         return products;
     }
 
+    /**
+     * Retrieves all products.
+     *
+     * @return a list of all products
+     */
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    /**
+     * Updates the given product.
+     *
+     * @param product the product to update
+     */
+    public void updateProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    /**
+     * Deletes the product with the given ID.
+     *
+     * @param productId the ID of the product to delete
+     */
+    public void deleteProduct(Long productId) {
+        productRepository.deleteById(productId);
     }
 }

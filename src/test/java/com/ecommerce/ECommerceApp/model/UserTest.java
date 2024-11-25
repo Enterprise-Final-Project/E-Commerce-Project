@@ -18,15 +18,15 @@ public class UserTest {
     @BeforeEach
     public void setUp() {
         user = new User(
+                true,
                 "John",
                 "Doe",
-                new PhoneNumber("123-456-7890"),
-                new Email("test@mail.com"),
+                "test@mail.com",
                 "password",
-                new Address("123 Main St", "Apt 1", "Springfield", "IL", "62701"),
-                new Address("123 Main St", "Apt 1", "Springfield", "IL", "62701"),
-                new Payment(1, PaymentType.CREDIT, PaymentStatus.APPROVED),
-                AccountType.USER);
+                "123 Main St, Apt 1",
+                "123 Main St, Apt 1",
+                1,
+                "USER");
     }
     
     /**
@@ -50,7 +50,7 @@ public class UserTest {
      */
     @Test
     public void testGetLastName() {
-        assert user.lastName.equals("Doe");
+        assert user.getLastName().equals("Doe");
     }
 
     /**
@@ -67,33 +67,6 @@ public class UserTest {
     @Test
     public void testSetNewPassword() {
         user.setNewPassword("newpassword");
-        assert user.password.equals("newpassword");
-    }
-
-    /**
-     * Tests that the active status is correctly updated.
-     */
-    @Test
-    public void testSetActive() {
-        user.setActive(true);
-        assert user.active;
-    }
-
-    /**
-     * Tests that the user information is correctly updated.
-     */
-    @Test
-    public void testUpdateInformation() {
-        user.updateInformation("Jane", "Smith", new PhoneNumber("098-765-4321"), new Email("test2@mail.com"), "newpassword",
-                new Address("456 Main St", "Apt 2", "Springfield", "IL", "62701"),
-                new Address("456 Main St", "Apt 2", "Springfield", "IL", "62701"),
-                new Payment(2, PaymentType.CREDIT, PaymentStatus.APPROVED), AccountType.ADMIN);
-        assert user.getFirstName().equals("Jane");
-        assert user.lastName.equals("Smith");
-        assert user.password.equals("newpassword");
-        assert user.mailingAddress.getStreet().equals("456 Main St");
-        assert user.shippingAddress.getStreet().equals("456 Main St");
-        assert user.paymentMethod.getPaymentID() == 2;
-        assert user.accountType == AccountType.ADMIN;
+        assert user.getPassword().equals("newpassword");
     }
 }

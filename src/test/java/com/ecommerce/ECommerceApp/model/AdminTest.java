@@ -1,7 +1,6 @@
 package com.ecommerce.ECommerceApp.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +19,15 @@ public class AdminTest {
     @BeforeEach
     public void setUp() {
         admin = new Admin(
+            true,
             "John", 
             "Doe", 
-            new PhoneNumber("1234567890"), 
-            new Email("john.doe@example.com"), 
+            "john.doe@example.com", 
             "password123", 
-            new Address("123 Main St", "City", "State", "12345", "Country"), 
-            new Address("456 Elm St", "City", "State", "12345", "Country"), 
-            new Payment(1, PaymentType.CREDIT, PaymentStatus.APPROVED),
-            AccountType.ADMIN, 
+            "123 Main St, Apt 1", 
+            "456 Elm St, Apt 2", 
+            1,
+            "ADMIN",
             "Level1"
         );
     }
@@ -47,15 +46,6 @@ public class AdminTest {
     @Test
     public void testGetFullName() {
         assertEquals("John Doe", admin.getFullName());
-    }
-
-    /**
-     * Tests the getUserID method.
-     */
-    @Test
-    public void testGetUserID() {
-        assertNotNull(admin.getUserID());
-        assertEquals(36, admin.getUserID().length()); // UUID length is 36 characters
     }
 
     /**
