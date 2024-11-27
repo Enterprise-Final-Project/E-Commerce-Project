@@ -1,6 +1,8 @@
 package com.ecommerce.ECommerceApp.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +11,7 @@ import javax.persistence.Id;
  * Represents a product in the e-commerce application.
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED) // Use JOINED for normalized tables
 public class Product {
 
     @Id
@@ -20,12 +23,12 @@ public class Product {
     private String deliveryTime;
     private int stock;
 
-    private String category;
-    private String subcategory;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
-    /**
-     * Default constructor.
-     */
+    @Enumerated(EnumType.STRING)
+    private Category.Subcategory subcategory;
+
     public Product() {
     }
 
@@ -41,7 +44,7 @@ public class Product {
      * @param productSubCategory the product subcategory
      */
     public Product(int productID, String productName, String productDescription, float productPrice, int productStock,
-            String productCategory, String productSubCategory) {
+            Category productCategory, Category.Subcategory productSubCategory) {
         this.id = Long.valueOf(productID);
         this.name = productName;
         this.description = productDescription;
@@ -160,11 +163,29 @@ public class Product {
     }
 
     /**
+     * Gets the product category.
+     *
+     * @return the product category
+     */
+    public Category getProductCategory() {
+        return category;
+    }
+
+    /**
+     * Sets the product category.
+     *
+     * @param category the product category
+     */
+    public void setProductCategory(Category category) {
+        this.category = category;
+    }
+
+    /**
      * Gets the product subcategory.
      *
      * @return the product subcategory
      */
-    public String getSubCategory() {
+    public Category.Subcategory getProductSubCategory() {
         return subcategory;
     }
 
@@ -173,23 +194,7 @@ public class Product {
      *
      * @param subcategory the product subcategory
      */
-    public void setSubCategory(String subcategory) {
-        this.subcategory = subcategory;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getSubcategory() {
-        return subcategory;
-    }
-
-    public void setSubcategory(String subcategory) {
+    public void setProductSubCategory(Category.Subcategory subcategory) {
         this.subcategory = subcategory;
     }
 
@@ -215,21 +220,5 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 }

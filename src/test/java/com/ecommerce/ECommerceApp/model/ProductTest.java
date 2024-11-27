@@ -20,9 +20,8 @@ public class ProductTest {
             "description", 
             3.0f, 
             1, 
-            "clothing",
-                    "shirt"
-                    
+            Category.ELECTRONICS, 
+            Category.Subcategory.SMARTPHONE
         );
     }
 
@@ -121,8 +120,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductCategory() {
-        product.setCategory("clothing");
-        assert product.getCategory().equals("clothing");
+        product.setProductCategory(Category.ELECTRONICS);
+        assert product.getProductCategory().equals(Category.ELECTRONICS);
     }
 
     /**
@@ -130,8 +129,8 @@ public class ProductTest {
      */
     @Test
     public void testSetProductCategory() {
-        product.setCategory("clothing");
-        assert product.getCategory().equals("clothing");
+        product.setProductCategory(Category.ELECTRONICS);
+        assert product.getProductCategory().equals(Category.ELECTRONICS);
     }
 
     /**
@@ -139,8 +138,8 @@ public class ProductTest {
      */
     @Test
     public void testGetProductSubCategory() {
-        product.setSubCategory("phone");
-        assert product.getSubCategory().equals("phone");
+        product.setProductSubCategory(Category.Subcategory.SMARTPHONE);
+        assert product.getProductSubCategory().equals(Category.Subcategory.SMARTPHONE);
     }
 
     /**
@@ -148,7 +147,7 @@ public class ProductTest {
      */
     @Test
     public void testSetProductSubCategory() {
-        product.setSubCategory("phone");
-        assert product.getSubCategory().equals("phone");
+        product.setProductSubCategory(Category.Subcategory.SMARTPHONE);
+        assert product.getProductSubCategory().equals(Category.Subcategory.SMARTPHONE);
     }
 }

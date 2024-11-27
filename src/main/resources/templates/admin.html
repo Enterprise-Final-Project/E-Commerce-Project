@@ -3,191 +3,64 @@
 <head>
     <head th:replace="fragments/header :: header">
     <title>Admin User</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .modal-header {
-            background-color: #007bff;
-            color: white;
-        }
-        .modal-footer {
-            display: flex;
-            justify-content: space-between;
-        }
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #0056b3;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-        }
-        .form-control {
-            margin-bottom: 5px;
-            padding: 5px;
-            font-size: 14px;
-        }
-        .actions-column {
-            width: 150px;
-        }
-        .footer-spacing {
-            margin-top: 100px;
-        }
-    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="mb-4 text-center">Admin Portal</h1>
+    <div>
+        <div class="container mt-5">
 
-        <!-- Product Management Section -->
-        <h2 class="mb-4 mt-5 text-center">Product Management</h2>
-        <div th:each="product : ${products}" class="card mb-4">
-            <div class="card-body">
-                <form th:action="@{/admin/updateProduct}" method="post">
-                    <input type="hidden" name="id" th:value="${product.id}">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" th:value="${product.name}" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" class="form-control" th:value="${product.description}" name="description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="number" class="form-control" th:value="${product.price}" name="price" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="deliveryTime">Delivery Time</label>
-                        <input type="text" class="form-control" th:value="${product.deliveryTime}" name="deliveryTime" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="stock">Stock</label>
-                        <input type="number" class="form-control" th:value="${product.stock}" name="stock" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <input type="text" class="form-control" th:value="${product.category}" name="category" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subcategory">Subcategory</label>
-                        <input type="text" class="form-control" th:value="${product.subcategory}" name="subcategory" required>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-success">Save</button>
-                        <button type="button" class="btn btn-danger" th:attr="onclick='confirmDeleteProduct(' + ${product.id} + ')'">Delete</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Add New Product Form -->
-        <h2 class="mb-4 mt-5 text-center">Add New Product</h2>
-        <div class="card mb-4">
-            <div class="card-body">
-                <form th:action="@{/admin/addProduct}" method="post">
-                    <div class="form-group">
-                        <label for="productName">Name</label>
-                        <input type="text" class="form-control" id="productName" name="name" placeholder="Enter product name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productDescription">Description</label>
-                        <input type="text" class="form-control" id="productDescription" name="description" placeholder="Enter product description" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productPrice">Price</label>
-                        <input type="number" class="form-control" id="productPrice" name="price" placeholder="Enter product price" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productDeliveryTime">Delivery Time</label>
-                        <input type="text" class="form-control" id="productDeliveryTime" name="deliveryTime" placeholder="Enter delivery time" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productStock">Stock</label>
-                        <input type="number" class="form-control" id="productStock" name="stock" placeholder="Enter product stock" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productCategory">Category</label>
-                        <input type="text" class="form-control" id="productCategory" name="category" placeholder="Enter product category" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="productSubcategory">Subcategory</label>
-                        <input type="text" class="form-control" id="productSubcategory" name="subcategory" placeholder="Enter product subcategory" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Product</button>
-                </form>
-            </div>
-        </div>
+            <h1 class="mb-4">User Management</h1>
+            <navbar>
+                <div>
+                    <ul>
+                       <li>
+                        <a href="/manage_users">Manage Users</a>
+                       </li> 
+                       <li>
+                        <a href="/manage_storefronts">Manage StoreFronts</a>
+                       </li> 
+                    </ul>
+                </div>
+            </navbar>
+            <!-- Add User Button -->
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                Add New User
+            </button>
+        
+            <!-- User Table -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.role}"></td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" 
+                                    th:attr="data-bs-target='#editUserModal' data-id=${user.id}">
+                                Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm" 
+                                    th:attr="onclick='confirmDelete(' + ${user.id} + ')';">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        
     </div>
-
-    <!-- Edit Product Modal -->
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form th:action="@{/admin/updateProduct}" method="post">
-                        <div class="form-group">
-                            <label for="editProductName">Name</label>
-                            <input type="text" class="form-control" id="editProductName" name="name" placeholder="Enter product name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editProductDescription">Description</label>
-                            <input type="text" class="form-control" id="editProductDescription" name="description" placeholder="Enter product description" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editProductPrice">Price</label>
-                            <input type="number" class="form-control" id="editProductPrice" name="price" placeholder="Enter product price" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editProductStock">Stock</label>
-                            <input type="number" class="form-control" id="editProductStock" name="stock" placeholder="Enter product stock" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Update Product</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-custom">Update Product</button>
-                </div>
-            </div>
-        </div>
+        <!-- Include the footer -->
+        <div th:replace="fragments/footer :: footer"></div>
     </div>
-
-    <!-- Delete Product Form -->
-    <form id="deleteProductForm" th:action="@{/admin/deleteProduct}" method="post" style="display:none;">
-        <input type="hidden" id="deleteProductId" name="productId">
-    </form>
-
-    <script>
-        function confirmDeleteProduct(productId) {
-            if (confirm('Are you sure you want to delete this product?')) {
-                document.getElementById('deleteProductId').value = productId;
-                document.getElementById('deleteProductForm').submit();
-            }
-        }
-
-        document.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;
-            var productId = button.getAttribute('data-id');
-            var name = button.getAttribute('data-name');
-            var description = button.getAttribute('data-description');
-            var price = button.getAttribute('data-price');
-            var stock = button.getAttribute('data-stock');
-
-            var modal = document.getElementById('editProductModal');
-            modal.querySelector('#editProductId').value = productId;
-            modal.querySelector('#editProductName').value = name;
-            modal.querySelector('#editProductDescription').value = description;
-            modal.querySelector('#editProductPrice').value = price;
-            modal.querySelector('#editProductStock').value = stock;
-        });
-    </script>
 </body>
+
 </html>

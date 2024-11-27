@@ -15,7 +15,11 @@
             <!-- Right-->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="navbar-brand">Hello Name</a>
+                    <p class="navbar-brand">
+                    Hello <span th:text="${loggedInUser != null && loggedInUser.firstName != null ? loggedInUser.firstName : 'Guest'}"></span>
+                </p>
+
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/cart}">Cart</a>
@@ -30,7 +34,9 @@
                     <a class="nav-link" th:href="@{/past_orders}">Past Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    <button type="submit" class="nav-link" style="border:none; background:none" th:href="@{/logout}">
+                        Logout
+                    </button>
                 </li>
             </ul>
         </div>
