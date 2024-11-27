@@ -1,5 +1,7 @@
 package com.ecommerce.ECommerceApp.controller;
 
+import com.ecommerce.ECommerceApp.model.User;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 public class ShopController {

@@ -10,10 +10,7 @@
         <div th:replace="fragments/navbar :: navbar"></div>
 
     </div>
-    <div>
-        <h1>Cart</h1>
-        <!--- should loop over the list-->
-   <div class="container">
+
 <!--       Template for cards-->
 <!--       <div class="card mb-3">-->
 <!--           <img src="..." class="card-img-top" alt="...">-->
@@ -23,24 +20,34 @@
 <!--               <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
 <!--           </div>-->
 <!--       </div>-->
-       <li th:each="item : ${cart.items}">
-       <ul>
-           <div class="card">
-           <div class="card-body">
-               <h5 class="card-title">Card title</h5>
-               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-               <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-               <span th:text="${item.productName}"></span> -
-               <span th:text="${item.quantity}"></span> x
-               <span th:text="${item.price}"></span>
-           </div>
-<!--           image needs to link to the image stored in the database-->
-           <img src="..." class="card-img-bottom" alt="...">
-       </ul>
-           </li>
-       </div>
-   </div>
-        <a th:href="@{/checkout}" class="btn btn-primary">Checkout</a>
+    <div class="container">
+        <h1>Cart</h1>
+
+        <!-- Check if the cart is empty -->
+        <div th:if="${cart.items == null || #lists.isEmpty(cart.items)}">
+            <p>Your cart is empty. Start adding items to see them here!</p>
+        </div>
+
+        <!-- Loop over cart items if not empty -->
+        <ul th:unless="${cart.items == null || #lists.isEmpty(cart.items)}">
+            <li th:each="item : ${cart.items}">
+                <div class="card mb-3">
+                    <!-- Dynamically load image -->
+                    <img th:src="${item.imageUrl}" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${item.productName}">Product Name</h5>
+                        <p class="card-text">Quantity: <span th:text="${item.quantity}">1</span></p>
+                        <p class="card-text">Price: $<span th:text="${item.price}">0.00</span></p>
+                        <p class="card-text">Total: $<span th:text="${item.price * item.quantity}">0.00</span></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Checkout button, displayed only if there are items in the cart -->
+        <div th:unless="${cart.items == null || #lists.isEmpty(cart.items)}">
+            <a th:href="@{/checkout}" class="btn btn-primary">Checkout</a>
+        </div>
     </div>
     <!-- Include the footer -->
     <div th:replace="fragments/footer :: footer"></div>

@@ -12,37 +12,26 @@
             <div th:replace="fragments/navbar :: navbar"></div>
         </div>
     </div>
-    <div>
-
-
-        <div class="container">
-            <h1>Wishlist</h1>
-            <!--- should loop over the list-->
-            <li th:each="item : ${wishlist.items}">
-                <ul>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                            <span th:text="${item.productName}"></span> -
-                            <span th:text="${item.quantity}"></span> x
-                            <span th:text="${item.price}"></span>
-                        </div>
-                        <!--           image needs to link to the image stored in the database-->
-                        <img src="..." class="card-img-bottom" alt="...">
-                </ul>
-            </li>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-                <img src="..." class="card-img-bottom" alt="...">
-            </div>
+    <div class="container">
+        <h1>Wishlist</h1>
+        <div th:if="${wishlist.items == null || #lists.isEmpty(wishlist.items)}">
+            <p>Your wishlist is empty. Start adding items to see them here!</p>
         </div>
+        <!-- loop over wishlist items -->
+        <ul th:unless="${wishlist.items == null || #lists.isEmpty(wishlist.items)}">
+        <li th:each="item : ${wishlist.items}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${item.productName}">Product Name</h5>
+                        <p class="card-text">Quantity: <span th:text="${item.quantity}">1</span></p>
+                        <p class="card-text">Price: $<span th:text="${item.price}">0.00</span></p>
+                    </div>
+                    <img th:src="${item.imageUrl}" class="card-img-bottom" alt="Product Image">
+                </div>
+            </li>
+        </ul>
     </div>
+
     <!-- Include the footer -->
     <div th:replace="fragments/footer :: footer"></div>
 </body>
