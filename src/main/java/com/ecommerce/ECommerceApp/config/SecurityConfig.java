@@ -9,7 +9,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.ecommerce.ECommerceApp.service.CustomUserDetailsService;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.access.vote.RoleHierarchyVoter;
 
+//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+
+
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 public class SecurityConfig {
 
@@ -17,6 +24,21 @@ public class SecurityConfig {
 
     public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
+    }
+
+    //inherited permissions by hierarchy
+    @Bean
+    public RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+        roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_SUPPLIER_ADMIN \n" +
+                "ROLE_SUPPLIER_ADMIN > ROLE_SUPPLIER_USER \n" +
+                "ROLE_SUPPLIER_USER > ROLE_USER");
+        return roleHierarchy;
+    }
+
+    @Bean
+    public RoleHierarchyVoter roleHierarchyVoter(RoleHierarchy roleHierarchy) {
+        return new RoleHierarchyVoter(roleHierarchy);
     }
 
     @Bean
@@ -46,6 +68,7 @@ public class SecurityConfig {
                     .permitAll()
                 .and()
                     .csrf().disable();
+
         return http.build();
     }
 
