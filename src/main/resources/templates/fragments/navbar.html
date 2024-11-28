@@ -34,9 +34,11 @@
                     <a class="nav-link" th:href="@{/past_orders}">Past Orders</a>
                 </li>
                 <li class="nav-item">
-                    <button type="submit" class="nav-link" style="border:none; background:none" th:href="@{/logout}">
-                        Logout
-                    </button>
+                    <form th:action="@{/logout}" method="post" style="display: inline;">
+                        <button type="submit" class="nav-link" style="border:none; background:none;">
+                            Logout
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>

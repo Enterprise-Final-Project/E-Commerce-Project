@@ -36,10 +36,18 @@ public class UserController {
 
     //handles the register page
     @PostMapping("/register")
-    @ResponseBody
-    public ResponseEntity<String> registerUser(@RequestBody UserRegistrationDto dto) {
-        userService.registerUser(dto.getFirstName(), dto.getLastName(), dto.getEmail(), dto.getPassword(), dto.getAccountType());
-        return ResponseEntity.ok("User registered successfully!");
+    public String registerUser(@ModelAttribute UserRegistrationDto userDto, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("user", userDto);
+            return "register";
+        }
+        userService.registerUser(
+                userDto.getFirstName(),
+                userDto.getLastName(),
+                userDto.getEmail(),
+                userDto.getPassword()
+        );
+        return "redirect:/login"; // Redirect to login page after successful registration
     }
 
 

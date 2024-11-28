@@ -1,6 +1,5 @@
 package com.ecommerce.ECommerceApp.service;
 
-import com.ecommerce.ECommerceApp.model.AccountType;
 import com.ecommerce.ECommerceApp.model.Email;
 import com.ecommerce.ECommerceApp.model.User;
 import com.ecommerce.ECommerceApp.repository.UserRepository;
@@ -21,20 +20,19 @@ public class UserService {
         /**
          * Registers a new user using the Builder pattern.
          *
-         * @param firstName  the user's first name
-         * @param lastName   the user's last name
-         * @param email      the user's email
+         * @param firstName   the user's first name
+         * @param lastName    the user's last name
+         * @param email       the user's email
          * @param rawPassword the raw password to be hashed
-         * @param accountType the account type (default is USER)
          * @return the saved User object
          */
-        public User registerUser(String firstName, String lastName, Email email, String rawPassword, AccountType accountType) {
+        public User registerUser(String firstName, String lastName, Email email, String rawPassword) {
             // Hash the password
             String hashedPassword = passwordEncoder.encode(rawPassword);
 
             // Build the user object using the Builder
             User user = new User.Builder(firstName, lastName, email, hashedPassword)
-                    .withAccountType(accountType) // Optional: default is USER
+                    //.withAccountType(accountType) // Optional: default is USER
                     .build();
 
             // Save the user to the database

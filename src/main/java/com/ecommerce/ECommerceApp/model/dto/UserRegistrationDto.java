@@ -7,7 +7,6 @@ public class UserRegistrationDto {
     private String lastName;
     private Email email;
     private String password;
-    private AccountType accountType;
 
     // Constructors
     public UserRegistrationDto() {}
@@ -25,14 +24,10 @@ public class UserRegistrationDto {
     public String getPassword(){
         return password;
     }
-    public AccountType getAccountType(){
-        return accountType;
-    }
 
     //setters
     public void setFirstName(){}
     public void setLastName() {}
     public void setEmail() {}
     public void setPassword() {}
-    public void setAccountType() {}
 }

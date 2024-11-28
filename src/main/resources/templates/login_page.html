@@ -4,6 +4,8 @@
         <title>E-Commerce Website</title>
     </head>
     <body>
+    <!-- Include the navbar -->
+    <div th:replace="fragments/navbar :: navbar"></div>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card w-50 shadow-lg">
             <div class="card-body">
@@ -23,6 +25,9 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                 </form>
+                <div th:if="${param.logout}" class="alert alert-success">
+                    You have been logged out.
+                </div>
                 <p class="text-center mt-3">
                     <a th:href="@{/register}">Don't have an account? Register here</a>.
                 </p>
@@ -32,6 +37,7 @@
             </div>
         </div>
     </div>
+
     <!-- Include the footer -->
             <div th:replace="fragments/footer :: footer"></div>
     </body>

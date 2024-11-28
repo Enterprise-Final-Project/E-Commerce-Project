@@ -57,13 +57,13 @@ public class User implements UserDetails{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Payment> payments = new ArrayList<>();
 
-    //permissions
+    //permissions, default is set here
     @Enumerated(EnumType.STRING)
     public AccountType accountType = AccountType.USER;
-
+    //setting empty defaults here
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart = new Cart();
-
+    //setting empty defaults here
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Wishlist wishlist = new Wishlist();
 
