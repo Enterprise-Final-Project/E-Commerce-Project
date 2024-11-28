@@ -9,6 +9,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.*;
+import java.util.HashSet;
+import java.util.Collection;
+
 /**
  * Represents a user in the e-commerce application.
  */
@@ -66,6 +69,24 @@ public class User implements UserDetails{
     //setting empty defaults here
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Wishlist wishlist = new Wishlist();
+    @Transient
+    private Collection<? extends GrantedAuthority> authorities;
+    // authorities
+    // Getters and setters
+    public String getRole() {
+        return accountType.getRoleName();
+    }
+
+    public void setRole(String role) {
+        this.accountType = AccountType.valueOf(role);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority(this.getRole()));
+    }
+    // authorities end
+
 
     // Default constructor for JPA
     protected User() {}
@@ -266,11 +287,20 @@ public class User implements UserDetails{
         return this.email.getEmail();
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Map the AccountType to a role
-        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + accountType.name()));
-    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        // Map the AccountType to a role
+//        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + accountType.name()));
+//    }
+//    // ???????????????????????????????????????????????????????????????? WHAT
+//    public Collection<? extends GrantedAuthority> getRoles() {
+//        return authorities;
+//    }
+//
+//    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+//        this.authorities = authorities;
+//    }
+
 
     @Override
     public String getPassword() {

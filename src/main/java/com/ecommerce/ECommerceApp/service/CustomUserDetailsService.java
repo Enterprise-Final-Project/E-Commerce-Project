@@ -2,7 +2,10 @@ package com.ecommerce.ECommerceApp.service;
 
 import com.ecommerce.ECommerceApp.model.Email;
 import com.ecommerce.ECommerceApp.repository.UserRepository;
-import org.springframework.security.core.userdetails.*;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.ecommerce.ECommerceApp.model.User;
 
@@ -23,5 +26,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         // return the User as the principal
         return user;
     }
-
 }
+
+

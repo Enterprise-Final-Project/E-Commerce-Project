@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+        lang="en">
 <div class="container">
 
 <div id="navbar" th:fragment="navbar" >
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand h1" th:href="@{/}">Home</a>
+
+
+
+<!--        <div>-->
+<!--            <p>Logged in as: <span th:text="${loggedInUser}">No User</span></p>-->
+<!--        </div>-->
+<!--        <div sec:authorize="isAuthenticated()">-->
+<!--            <p>Welcome back, authenticated user!</p>-->
+<!--        </div>-->
+<!--        <div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--            <p>You have admin access.</p>-->
+<!--        </div>-->
+<!--        <div sec:authorize="hasRole('ROLE_USER')">-->
+<!--            <p>You have user access.</p>-->
+<!--        </div>-->
+<!--        <div sec:authorize="isAnonymous()">-->
+<!--            <p>Please log in.</p>-->
+<!--        </div>-->
+
+<!--        <p>Authentication Object: <span sec:authentication="principal"></span></p>-->
+<!--        <p>Authorities: <span sec:authentication="principal.authorities"></span></p>-->
+
         <div class="container-fluid">
             <!-- left -->
             <ul class="navbar-nav me-auto">
@@ -12,34 +37,55 @@
                     <a class="nav-link" th:href="@{/about}">About</a>
                 </li>
             </ul>
+
             <!-- Right-->
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <p class="navbar-brand">
                     Hello <span th:text="${loggedInUser != null && loggedInUser.firstName != null ? loggedInUser.firstName : 'Guest'}"></span>
                 </p>
-
-
                 </li>
-                <li class="nav-item">
+                <!-- user -->
+                <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                     <a class="nav-link" th:href="@{/cart}">Cart</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                     <a class="nav-link" th:href="@{/wishlist}">Wishlist</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                     <a class="nav-link" th:href="@{/users/account}">Account</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
                     <a class="nav-link" th:href="@{/past_orders}">Past Orders</a>
                 </li>
-                <li class="nav-item">
+
+                <!-- admin -->
+                <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a class="nav-link" th:href="@{/admin}" >Admin</a>
+                </li>
+
+
+                <!-- supplier admin -->
+                <li class="nav-item" sec:authorize="hasRole('ROLE_SUPPLIER_ADMIN')">
+                    <a class="nav-link" th:href="@{/storefront_management}"> Storefront Management</a>
+                </li>
+
+                <li class="nav-item" sec:authorize="hasRole('ROLE_SUPPLIER_ADMIN')">
+                    <a class="nav-link" th:href="@{/storefront_fulfillment}"> Storefront Management</a>
+                </li>
+
+                <!--  unauthenticated  -->
+                <li class="nav-item" sec:authorize="isAnonymous()">
+                    <a class="nav-link" th:href="@{/login_page}" th:text="'Login'"></a>
+                </li>
+
+                <!-- logout -->
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" method="post" style="display: inline;">
-                        <button type="submit" class="nav-link" style="border:none; background:none;">
-                            Logout
-                        </button>
+                        <button type="submit" class="btn btn-link nav-link" style="border:none; background:none;">Logout</button>
                     </form>
                 </li>
+
             </ul>
         </div>
     </nav>
