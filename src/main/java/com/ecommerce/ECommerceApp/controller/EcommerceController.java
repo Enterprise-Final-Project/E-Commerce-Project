@@ -2,9 +2,11 @@ package com.ecommerce.ECommerceApp.controller;
 
 import java.util.List;
 
+import com.ecommerce.ECommerceApp.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,36 +44,6 @@ public class EcommerceController {
     @GetMapping("/about")
     public String about() {
         return "about";
-    }
-
-    /**
-     * Handles requests to the account page.
-     *
-     * @return the name of the account page view
-     */
-    @GetMapping("/account")
-    public String account() {
-        return "account";
-    }
-
-    /**
-     * Handles requests to the admin page.
-     *
-     * @return the name of the admin page view
-     */
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
-    }
-
-    /**
-     * Handles requests to the cart page.
-     *
-     * @return the name of the cart page view
-     */
-    @GetMapping("/cart")
-    public String cart() {
-        return "cart";
     }
 
     /**
@@ -144,15 +116,7 @@ public class EcommerceController {
         return "storefront_management";
     }
 
-    /**
-     * Handles requests to the wishlist page.
-     *
-     * @return the name of the wishlist page view
-     */
-    @GetMapping("/wishlist")
-    public String wishlist() {
-        return "wishlist";
-    }
+
 
     /**
      * Handles search requests.

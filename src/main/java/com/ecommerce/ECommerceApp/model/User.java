@@ -2,20 +2,12 @@ package com.ecommerce.ECommerceApp.model;
 
 import java.util.List;
 import java.util.UUID;
-
-//import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-
 import java.util.Collection;
 import java.util.Collections;
-
-
-
-
 import java.util.*;
 /**
  * Represents a user in the e-commerce application.
@@ -70,10 +62,10 @@ public class User implements UserDetails{
     public AccountType accountType = AccountType.USER;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Cart cart;
+    private Cart cart = new Cart();
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Wishlist wishlist;
+    private Wishlist wishlist = new Wishlist();
 
     // Default constructor for JPA
     protected User() {}
@@ -224,10 +216,9 @@ public class User implements UserDetails{
      * @param password the password of the user
      * @param mailingAddress the mailing address of the user
      * @param shippingAddress the shipping address of the user
-     * @param paymentMethod the payment method of the user
      * @param accountType the account type of the user
      */
-    public void updateInformation(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, Payment paymentMethod, AccountType accountType) {
+    public void updateInformation(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, AccountType accountType) {
         // if fields are left blank, they will not update
         if (firstName != null && !firstName.isBlank()) {
             this.firstName = firstName;
@@ -333,7 +324,7 @@ public class User implements UserDetails{
 
     public void setCart(Cart cart) {
         this.cart = cart;
-        cart.setUser(this); // Tie the cart to the user
+        cart.setUser(this);
     }
 
     public Wishlist getWishlist() {
@@ -342,7 +333,7 @@ public class User implements UserDetails{
 
     public void setWishlist(Wishlist wishlist) {
         this.wishlist = wishlist;
-        wishlist.setUser(this); // Tie the wishlist to the user
+        wishlist.setUser(this);
     }
 
 }

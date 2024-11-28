@@ -1,13 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head th:replace="fragments/header :: header">
     <title>Account</title>
-</head>
-<body>
-<div>
-  <p>account details</p>
+    </head>
+    <body>
+    <div class="container mt-5">
 
-</div>
+        <h1 class="text-center">User Account</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form th:action="@{/account/update}" method="post" class="p-4 border rounded shadow">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control"
+                               th:value="${user.firstName}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control"
+                               th:value="${user.lastName}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control"
+                               th:value="${user.email.toString()}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Phone Number</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
+                               th:value="${user.phoneNumber.getPhoneNumber()}" placeholder="Optional">
+                    </div>
+                    <h4 class="mt-4">Mailing Address</h4>
+                    <div class="mb-3">
+                        <label for="mailingStreet" class="form-label">Street</label>
+                        <input type="text" id="mailingStreet" name="mailingStreet" class="form-control"
+                               th:value="${user?.mailingAddress?.getStreet() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mailingCity" class="form-label">City</label>
+                        <input type="text" id="mailingCity" name="mailingCity" class="form-control"
+                               th:value="${user?.mailingAddress?.getCity() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mailingState" class="form-label">State</label>
+                        <input type="text" id="mailingState" name="mailingState" class="form-control"
+                               th:value="${user?.mailingAddress?.getState() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mailingZip" class="form-label">Zip Code</label>
+                        <input type="text" id="mailingZip" name="mailingZip" class="form-control"
+                               th:value="${user?.mailingAddress?.getZipCode() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="mailingCountry" class="form-label">Country</label>
+                        <input type="text" id="mailingCountry" name="mailingCountry" class="form-control"
+                               th:value="${user?.mailingAddress?.getCountry() ?: '' }">
+                    </div>
+                    <h4 class="mt-4">Shipping Address</h4>
+                    <div class="mb-3">
+                        <label for="shippingStreet" class="form-label">Street</label>
+                        <input type="text" id="shippingStreet" name="shippingStreet" class="form-control"
+                               th:value="${user?.shippingAddress?.getStreet() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="shippingCity" class="form-label">City</label>
+                        <input type="text" id="shippingCity" name="shippingCity" class="form-control"
+                               th:value="${user?.shippingAddress?.getCity() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="shippingState" class="form-label">State</label>
+                        <input type="text" id="shippingState" name="shippingState" class="form-control"
+                               th:value="${user?.shippingAddress?.getStreet() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="shippingZip" class="form-label">Zip Code</label>
+                        <input type="text" id="shippingZip" name="shippingZip" class="form-control"
+                               th:value="${user?.shippingAddress?.getZipCode() ?: ''}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="shippingCountry" class="form-label">Country</label>
+                        <input type="text" id="shippingCountry" name="shippingCountry" class="form-control"
+                               th:value="${user?.shippingAddress?.getCountry() ?: ''}">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Update Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

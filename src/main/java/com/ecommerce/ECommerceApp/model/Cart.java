@@ -15,7 +15,7 @@ public class Cart {
     @JoinColumn(name = "user_id", nullable = false) // Each user has one cart
     private User user;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private List<CartItem> items = new ArrayList<>();
 
     // Getters and setters

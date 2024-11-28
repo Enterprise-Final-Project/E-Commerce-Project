@@ -1,6 +1,5 @@
 package com.ecommerce.ECommerceApp.model;
 
-import org.springframework.stereotype.Component;
 import javax.persistence.*;
 
 /**

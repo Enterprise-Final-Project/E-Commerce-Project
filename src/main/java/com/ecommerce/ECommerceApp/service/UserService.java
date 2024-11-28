@@ -57,7 +57,7 @@ public class UserService {
          * @param userId      the ID of the user to update
          * @param updatedData the updated data for the user
          */
-        public void updateUser(Long userId, User.Builder updatedData) {
+        public void adminUpdateUser(Long userId, User.Builder updatedData) {
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -70,11 +70,30 @@ public class UserService {
                     updatedData.password != null ? passwordEncoder.encode(updatedData.password) : null,
                     updatedData.mailingAddress,
                     updatedData.shippingAddress,
-                    updatedData.paymentMethod,
                     updatedData.accountType
             );
 
             // Save updated user
             userRepository.save(user);
         }
+
+    public void updateUser(Long userId, User updatedData) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Apply updates using the builder
+        user.updateInformation(
+                updatedData.firstName,
+                updatedData.lastName,
+                updatedData.phoneNumber,
+                updatedData.email,
+                updatedData.getPassword() != null ? passwordEncoder.encode(updatedData.getPassword()) : null,
+                updatedData.mailingAddress,
+                updatedData.shippingAddress,
+                updatedData.accountType
+        );
+
+        // Save updated user
+        userRepository.save(user);
     }
+}
