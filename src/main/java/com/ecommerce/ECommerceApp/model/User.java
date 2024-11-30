@@ -1,76 +1,185 @@
 package com.ecommerce.ECommerceApp.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
+import java.util.UUID;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.*;
+import java.util.HashSet;
+import java.util.Collection;
 
 /**
  * Represents a user in the e-commerce application.
  */
 @Entity
-public class User {
+@Table(name = "users")
+public class User implements UserDetails{
 
+    // db details
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userID; // Change to Long for auto-generation
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // For auto-increment IDs
+    private Long userID;
+    public Boolean active = true;
 
-    private Boolean active;
+    // user account details
+    public String firstName;
+    public String lastName;
+    @Embedded
+    public PhoneNumber phoneNumber;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Embedded
+    public Email email;
 
-    @Column(name = "last_name")
-    private String lastName;
+    protected String password;
 
-    @Column(name = "email")
-    private String email;
+    // payment details
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "street", column = @Column(name = "mailing_street")),
+            @AttributeOverride(name = "city", column = @Column(name = "mailing_city")),
+            @AttributeOverride(name = "state", column = @Column(name = "mailing_state")),
+            @AttributeOverride(name = "zipCode", column = @Column(name = "mailing_zip_code")),
+            @AttributeOverride(name = "country", column = @Column(name = "mailing_country"))
+    })
+    public Address mailingAddress;
 
-    @Column(name = "password")
-    private String password;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "street", column = @Column(name = "shipping_street")),
+            @AttributeOverride(name = "city", column = @Column(name = "shipping_city")),
+            @AttributeOverride(name = "state", column = @Column(name = "shipping_state")),
+            @AttributeOverride(name = "zipCode", column = @Column(name = "shipping_zip_code")),
+            @AttributeOverride(name = "country", column = @Column(name = "shipping_country"))
+    })
+    public Address shippingAddress;
 
-    @Column(name = "mailing_address")
-    private String mailingAddress;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> payments = new ArrayList<>();
 
-    @Column(name = "shipping_address")
-    private String shippingAddress;
-
-    @Column(name = "payment_method")
-    private Integer paymentMethod;
-
-    @Column(name = "account_type")
-    private String accountType;
-
-    /**
-     * Default constructor.
-     */
-    public User() {
+    //permissions, default is set here
+    @Enumerated(EnumType.STRING)
+    public AccountType accountType = AccountType.USER;
+    //setting empty defaults here
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart = new Cart();
+    //setting empty defaults here
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Wishlist wishlist = new Wishlist();
+    @Transient
+    private Collection<? extends GrantedAuthority> authorities;
+    // authorities
+    // Getters and setters
+    public String getRole() {
+        return accountType.getRoleName();
     }
 
+    public void setRole(String role) {
+        this.accountType = AccountType.valueOf(role);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority(this.getRole()));
+    }
+    // authorities end
+
+
+    // Default constructor for JPA
+    protected User() {}
+
     /**
-     * Constructs a new User with the specified details.
+     * Constructs a new User with the specified details using the builder.
      *
-     * @param active the active status of the user
-     * @param firstName the first name of the user
-     * @param lastName the last name of the user
-     * @param email the email of the user
-     * @param password the password of the user
-     * @param mailingAddress the mailing address of the user
-     * @param shippingAddress the shipping address of the user
-     * @param paymentMethod the payment method of the user
-     * @param accountType the account type of the user
+     * @param builder builder class with the default values
      */
-    public User(Boolean active, String firstName, String lastName, String email, String password, String mailingAddress, String shippingAddress, Integer paymentMethod, String accountType) {
-        this.active = active;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.mailingAddress = mailingAddress;
-        this.shippingAddress = shippingAddress;
-        this.paymentMethod = paymentMethod;
-        this.accountType = accountType;
+    private User(Builder builder) {
+        this.userID = generateUniqueID();
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.phoneNumber = builder.phoneNumber;
+        this.email = builder.email;
+        this.password = builder.password;
+        this.mailingAddress = builder.mailingAddress;
+        this.shippingAddress = builder.shippingAddress;
+        this.accountType = builder.accountType;
+
+        this.cart = new Cart();
+        this.cart.setUser(this);
+
+        this.wishlist = new Wishlist();
+        this.wishlist.setUser(this);
+
+        if (builder.payments != null) {
+            this.payments.addAll(builder.payments);
+            this.payments.forEach(payment -> payment.setUser(this)); // Set the user for each payment
+        }
+    }
+
+    //default value builder
+    //used for default values for initalization
+    public static class Builder {
+        public String firstName;
+        public String lastName;
+        public PhoneNumber phoneNumber = null;
+        public Email email;
+        public String password;
+        public Address mailingAddress = null; // Default value
+        public Address shippingAddress = null; // Default value
+        public Payment paymentMethod = new Payment(PaymentType.CREDIT, PaymentStatus.NOTPAYED); // Default value
+        public AccountType accountType = AccountType.USER; // Default value
+        public List<Payment> payments = new ArrayList<>(); // Initialize as an empty list
+
+
+
+        public Builder(String firstName, String lastName, Email email, String password) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.password = password;
+        }
+
+        public Builder withPhoneNumber(PhoneNumber phoneNumber){
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder withMailingAddress(Address mailingAddress) {
+            this.mailingAddress = mailingAddress;
+            return this;
+        }
+
+        public Builder withShippingAddress(Address shippingAddress) {
+            this.shippingAddress = shippingAddress;
+            return this;
+        }
+
+        public Builder withPaymentMethod(Payment paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder withAccountType(AccountType accountType) {
+            this.accountType = accountType;
+            return this;
+        }
+        public Builder withPayments(List<Payment> payments) {
+            this.payments = payments;
+            return this;
+        }
+
+        public Builder addPayment(Payment payment) {
+            this.payments.add(payment);
+            return this;
+        }
+
+
+        public User build() {
+            return new User(this);
+        }
     }
 
     /**
@@ -83,156 +192,21 @@ public class User {
     }
 
     /**
-     * Sets the user ID.
-     *
-     * @param userID the user ID
-     */
-    public void setUserID(Long userID) {
-        this.userID = userID;
-    }
-
-    /**
      * Gets the first name of the user.
      *
-     * @return the first name
+     * @return the first name of the user
      */
     public String getFirstName() {
         return this.firstName;
     }
 
     /**
-     * Sets the first name of the user.
-     *
-     * @param firstName the first name
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
      * Gets the full name of the user.
      *
-     * @return the full name
+     * @return the full name of the user
      */
     public String getFullName() {
         return this.firstName + " " + this.lastName;
-    }
-
-    /**
-     * Checks if the user is active.
-     *
-     * @return true if the user is active, false otherwise
-     */
-    public boolean isActive() {
-        return this.active;
-    }
-
-    /**
-     * Gets the password of the user.
-     *
-     * @return the password
-     */
-    public String getPassword() {
-        return this.password;
-    }
-
-    /**
-     * Sets the password of the user.
-     *
-     * @param password the password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * Gets the mailing address of the user.
-     *
-     * @return the mailing address
-     */
-    public String getMailingAddress() {
-        return this.mailingAddress;
-    }
-
-    /**
-     * Sets the mailing address of the user.
-     *
-     * @param mailingAddress the mailing address
-     */
-    public void setMailingAddress(String mailingAddress) {
-        this.mailingAddress = mailingAddress;
-    }
-
-    /**
-     * Gets the shipping address of the user.
-     *
-     * @return the shipping address
-     */
-    public String getShippingAddress() {
-        return this.shippingAddress;
-    }
-
-    /**
-     * Sets the shipping address of the user.
-     *
-     * @param shippingAddress the shipping address
-     */
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    /**
-     * Gets the payment method of the user.
-     *
-     * @return the payment method
-     */
-    public Integer getPaymentMethod() {
-        return this.paymentMethod;
-    }
-
-    /**
-     * Sets the payment method of the user.
-     *
-     * @param paymentMethod the payment method
-     */
-    public void setPaymentMethod(Integer paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    /**
-     * Gets the account type of the user.
-     *
-     * @return the account type
-     */
-    public String getAccountType() {
-        return this.accountType;
-    }
-
-    /**
-     * Gets the email of the user.
-     *
-     * @return the email
-     */
-    public String getEmail() {
-        return this.email;
-    }
-
-    /**
-     * Gets the last name of the user.
-     *
-     * @return the last name
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets the last name of the user.
-     *
-     * @param lastName the last name
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     /**
@@ -252,4 +226,144 @@ public class User {
     protected void setActive(boolean active) {
         this.active = active;
     }
+
+    /**
+     * Updates the user's information.
+     *
+     * @param firstName the first name of the user
+     * @param lastName the last name of the user
+     * @param phoneNumber the phone number of the user
+     * @param email the email address of the user
+     * @param password the password of the user
+     * @param mailingAddress the mailing address of the user
+     * @param shippingAddress the shipping address of the user
+     * @param accountType the account type of the user
+     */
+    public void updateInformation(String firstName, String lastName, PhoneNumber phoneNumber, Email email, String password, Address mailingAddress, Address shippingAddress, AccountType accountType) {
+        // if fields are left blank, they will not update
+        if (firstName != null && !firstName.isBlank()) {
+            this.firstName = firstName;
+        }
+        if (lastName != null && !lastName.isBlank()) {
+            this.lastName = lastName;
+        }
+        if (phoneNumber != null) {
+            this.phoneNumber = phoneNumber;
+        }
+        if (email != null) {
+            this.email = email;
+        }
+        if (password != null && !password.isBlank()) {
+            this.password = password;
+        }
+        if (mailingAddress != null) {
+            this.mailingAddress = mailingAddress;
+        }
+        if (shippingAddress != null) {
+            this.shippingAddress = shippingAddress;
+        }
+        if (accountType != null) {
+            this.accountType = accountType;
+        }
+    }
+
+    /**
+     * Generates a unique UUID for the user.
+     *
+     * @return the unique UUID
+     */
+    private Long generateUniqueID() {
+        return UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+    }
+
+
+    //type field
+    public boolean hasType(AccountType type){
+        return this.accountType == type;
+    }
+
+
+    public String getEmail(){
+        return this.email.getEmail();
+    }
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        // Map the AccountType to a role
+//        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + accountType.name()));
+//    }
+//    // ???????????????????????????????????????????????????????????????? WHAT
+//    public Collection<? extends GrantedAuthority> getRoles() {
+//        return authorities;
+//    }
+//
+//    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+//        this.authorities = authorities;
+//    }
+
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return String.valueOf(email); // Use email as the username
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return active;
+    }
+
+    public AccountType getAccountType(){
+        return this.accountType;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public void addPayment(Payment payment) {
+        this.payments.add(payment);
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+        cart.setUser(this);
+    }
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
+        wishlist.setUser(this);
+    }
+
 }

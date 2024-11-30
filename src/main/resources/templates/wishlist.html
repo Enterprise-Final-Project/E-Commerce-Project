@@ -12,56 +12,26 @@
             <div th:replace="fragments/navbar :: navbar"></div>
         </div>
     </div>
-    <div class="col-12 col-md-8">
+    <div class="container">
         <h1>Wishlist</h1>
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
-
-            <div th:each="item : ${wishListItems}"
-                 class="col">
-                <!--- should loop over the list-->
-
-                <div class="card h-100 shadow-sm text-center">
+        <div th:if="${wishlist.items == null || #lists.isEmpty(wishlist.items)}">
+            <p>Your wishlist is empty. Start adding items to see them here!</p>
+        </div>
+        <!-- loop over wishlist items -->
+        <ul th:unless="${wishlist.items == null || #lists.isEmpty(wishlist.items)}">
+        <li th:each="item : ${wishlist.items}">
+                <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${item.product.name}">
-                            Card Title
-                        </h5>
-                        <p class="card-text" th:text="${item.product.description}">
-                            Some quick example text to build on the card title.
-                        </p>
+                        <h5 class="card-title" th:text="${item.productName}">Product Name</h5>
+                        <p class="card-text">Quantity: <span th:text="${item.quantity}">1</span></p>
+                        <p class="card-text">Price: $<span th:text="${item.price}">0.00</span></p>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li
-                                class="list-group-item"
-                                th:text="'Price: ' + ${item.product.price}"
-                        >
-                            Price
-                        </li>
-                        <li
-                                class="list-group-item"
-                                th:text="'Delivery Time: ' + ${item.product.deliveryTime}"
-                        >
-                            Delivery Time
-                        </li>
-                    </ul>
-                    <div class="card-body d-flex flex-column align-items-center">
-                        <a href="#" class="card-link" style="margin: 0"
-                        >Remove from Wishlist</a
-                        >
-                        <a href="#" class="card-link" style="margin: 0"
-                        >Move to Cart</a
-                        >
-
-                    </div>
-
+                    <img th:src="${item.imageUrl}" class="card-img-bottom" alt="Product Image">
                 </div>
-            </div>
-        </div>
+            </li>
+        </ul>
+    </div>
 
-        <a th:href="@{/checkout}" class="btn btn-primary">Checkout</a>
-    </div>
-        </div>
-    </div>
     <!-- Include the footer -->
     <div th:replace="fragments/footer :: footer"></div>
 </body>

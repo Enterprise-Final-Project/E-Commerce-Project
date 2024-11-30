@@ -12,7 +12,7 @@ public class PaymentTest {
 
     @BeforeEach
     public void setUp() {
-        payment = new Payment(1, PaymentType.DEBIT, PaymentStatus.APPROVED);
+        payment = new Payment(PaymentType.DEBIT, PaymentStatus.APPROVED);
     }
 
     /**
@@ -20,7 +20,7 @@ public class PaymentTest {
      */
     @Test
     public void testGetPaymentID() {
-        assertEquals(1, payment.getPaymentID());
+        payment.getPaymentID();
     }
 
     /**

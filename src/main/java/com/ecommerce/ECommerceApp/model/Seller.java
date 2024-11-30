@@ -2,7 +2,6 @@ package com.ecommerce.ECommerceApp.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 /**

@@ -1,12 +1,12 @@
 package com.ecommerce.ECommerceApp.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import com.ecommerce.ECommerceApp.model.Email;
 import com.ecommerce.ECommerceApp.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-/**
- * Repository interface for User entities.
- * Provides CRUD operations and query methods for User entities.
- */
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(Email email);
+    Optional<User> findById(Long userId);
 }
+

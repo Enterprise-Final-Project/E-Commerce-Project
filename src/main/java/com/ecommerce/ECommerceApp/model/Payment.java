@@ -1,38 +1,41 @@
 package com.ecommerce.ECommerceApp.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 /**
  * Represents a payment in the e-commerce application.
  */
-@Embeddable
+@Entity
 public class Payment {
-    
-    @Column(name = "paymentID")
-    private Integer paymentID;
+
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment ID
+   private Long paymentID;
+
+    @Column(nullable = true)
     @Enumerated(EnumType.STRING)
-    @Column(name = "paymentStatus")
-    private PaymentStatus paymentStatus;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "paymentType")
     private PaymentType paymentType;
 
-    // Default constructor
-    public Payment() {
-    }
+    @Column(nullable = true)
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    private User user;
+
+    /**
+     * Default constructor required by JPA.
+     */
+
+    protected Payment() {}
     /**
      * Constructor for Payment.
      *
-     * @param paymentID the payment ID
      * @param paymentType the payment type
      * @param paymentStatus the payment status
      */
-    public Payment(int paymentID, PaymentType paymentType, PaymentStatus paymentStatus) {
-        this.paymentID = paymentID;
+    public Payment(PaymentType paymentType, PaymentStatus paymentStatus) {
         this.paymentType = paymentType;
         this.paymentStatus = paymentStatus;
     }
@@ -42,17 +45,8 @@ public class Payment {
      *
      * @return the payment ID
      */
-    public int getPaymentID() {
+    public Long getPaymentID() {
         return paymentID;
-    }
-
-    /**
-     * Sets the payment ID.
-     *
-     * @param paymentID the payment ID
-     */
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
     }
 
     /**
@@ -89,5 +83,12 @@ public class Payment {
      */
     public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 }
