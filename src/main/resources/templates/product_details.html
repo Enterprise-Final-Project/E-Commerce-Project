@@ -17,7 +17,7 @@
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="card">
+          <div class="card text-center">
             <div class="card-header">
               <h1 th:text="${product.name}">Product Name</h1>
             </div>
@@ -28,8 +28,26 @@
               <p th:text="'Delivery Time: ' + ${product.deliveryTime}">
                 delivery time
               </p>
-              <button class="btn btn-primary">Add to Cart</button>
-              <button class="btn btn-secondary">Add to Wishlist</button>
+              <form th:action="@{/cart/add}" method="post">
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <button type="submit" class="btn btn-primary mb-3">
+                  Add to Cart
+                </button>
+              </form>
+              <form th:action="@{/wishlist/add}" method="post">
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <button type="submit" class="btn btn-secondary">
+                  Add to Wishlist
+                </button>
+              </form>
             </div>
           </div>
         </div>
