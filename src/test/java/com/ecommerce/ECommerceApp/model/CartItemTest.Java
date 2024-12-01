@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+
 /**
  * Unit tests for the {@link CartItem} class.
  */
@@ -36,7 +38,7 @@ public class CartItemTest {
      */
     @Test
     public void testGetPrice() {
-        cartItem.setPrice(3.0);
+        cartItem.setPrice(BigDecimal.valueOf(3.0));
         assertEquals(3.0, cartItem.getPrice());
     }
 
@@ -59,11 +61,11 @@ public class CartItemTest {
     }
 
     /**
-     * Tests the {@link CartItem#setPrice(double)} method.
+     * Tests the {@link CartItem#setPrice(BigDecimal)} method.
      */
     @Test
     public void testSetPrice() {
-        cartItem.setPrice(3.0);
+        cartItem.setPrice(BigDecimal.valueOf(3.0));
         assertEquals(3.0, cartItem.getPrice());
     }
 }

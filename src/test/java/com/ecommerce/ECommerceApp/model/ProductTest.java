@@ -3,6 +3,8 @@ package com.ecommerce.ECommerceApp.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 /**
  * Unit tests for the {@link Product} class.
  */
@@ -17,8 +19,8 @@ public class ProductTest {
         product = new Product(
             1, 
             "product", 
-            "description", 
-            3.0f, 
+            "description",
+                BigDecimal.valueOf(3.0f),
             1, 
             Category.ELECTRONICS, 
             Category.Subcategory.SMARTPHONE
@@ -84,17 +86,17 @@ public class ProductTest {
      */
     @Test
     public void testGetProductPrice() {
-        product.setProductPrice(3.0f);
-        assert product.getProductPrice() == 3.0f;
+        product.setProductPrice(BigDecimal.valueOf(3.0f));
+        assert product.getProductPrice() == BigDecimal.valueOf(3.0f);
     }
 
     /**
-     * Tests the {@link Product#setProductPrice(float)} method.
+     * Tests the {@link Product#setProductPrice(BigDecimal)} method.
      */
     @Test
     public void testSetProductPrice() {
-        product.setProductPrice(3.0f);
-        assert product.getProductPrice() == 3.0f;
+        product.setProductPrice(BigDecimal.valueOf(3.0f));
+        assert product.getProductPrice() == BigDecimal.valueOf(3.0f);
     }
 
     /**

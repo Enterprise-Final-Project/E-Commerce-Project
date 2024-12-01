@@ -1,5 +1,6 @@
 package com.ecommerce.ECommerceApp.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,7 +21,7 @@ public class OrderTest {
      */
     @BeforeEach
     public void setUp() {
-        order = new Order(1, LocalDateTime.now(), 1, 100.0f);
+        order = new Order(1, LocalDateTime.now(), 1, BigDecimal.valueOf(100.0f));
     }
 
     /**
@@ -90,7 +91,7 @@ public class OrderTest {
      */
     @Test
     public void testSetTotalAmount() {
-        order.setTotalAmount(200.0f);
-        assertEquals(200.0f, order.getTotalAmount());
+        order.setTotalAmount(BigDecimal.valueOf(200.0f));
+        assertEquals(BigDecimal.valueOf(200.0f), order.getTotalAmount());
     }
 }

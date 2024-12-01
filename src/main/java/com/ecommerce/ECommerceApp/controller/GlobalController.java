@@ -12,7 +12,7 @@ import com.ecommerce.ECommerceApp.model.User;
 @ControllerAdvice
 public class GlobalController {
 
-    @ModelAttribute
+    @ModelAttribute("currentUser")
     public void addUserToModel(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated() &&

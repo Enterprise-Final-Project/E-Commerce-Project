@@ -6,10 +6,35 @@
 <body>
 <!-- Include the navbar -->
 <div th:replace="fragments/navbar :: navbar"></div>
-<div>
-Order Details here
+<h1>Order Details</h1>
 
-</div>
+<p><strong>Order ID:</strong> <span th:text="${order.getOrderID()}"></span></p>
+<p><strong>Order Date:</strong> <span th:text="${#dates.format(order.getOrderDate(), 'yyyy-MM-dd HH:mm')}"></span></p>
+<p><strong>Total Price:</strong> <span th:text="${order.getTotalAmount()}"></span></p>
+<p><strong>Status:</strong> <span th:text="${order.getStatus()}"></span></p>
+
+<h2>Cart Items</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Delivery Time</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="item : ${order.cart.items}">
+    <td th:text="${item.getName()}"></td>
+    <td th:text="${item.getQuantity()}"></td>
+    <td th:text="${item.getProductPrice()}"></td>
+    <td th:text="${item.getDeliveryTime()}"></td>
+    <td th:text="${item.getDescription()}"></td>
+  </tr>
+  </tbody>
+</table>
+<a th:href="@{/past_orders}">Back to Order History</a>
 <!-- Include the footer -->
 <div th:replace="fragments/footer :: footer"></div>
 </body>

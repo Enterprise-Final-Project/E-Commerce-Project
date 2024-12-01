@@ -6,6 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 /**
  * Represents a product in the e-commerce application.
@@ -19,7 +20,7 @@ public class Product {
     private Long id;
     private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
     private String deliveryTime;
     private int stock;
 
@@ -43,7 +44,7 @@ public class Product {
      * @param productCategory the product category
      * @param productSubCategory the product subcategory
      */
-    public Product(int productID, String productName, String productDescription, float productPrice, int productStock,
+    public Product(int productID, String productName, String productDescription, BigDecimal productPrice, int productStock,
             Category productCategory, Category.Subcategory productSubCategory) {
         this.id = Long.valueOf(productID);
         this.name = productName;
@@ -109,20 +110,20 @@ public class Product {
     }
 
     /**
-     * Gets the product price as a float.
+     * Gets the product price as a BigDecimal.
      *
-     * @return the product price as a float
+     * @return the product price as a BigDecimal
      */
-    public float getProductPrice() {
-        return (float) price;
+    public BigDecimal getProductPrice() {
+        return (BigDecimal) price;
     }
 
     /**
-     * Sets the product price as a float.
+     * Sets the product price as a BigDecimal.
      *
-     * @param price the product price as a float
+     * @param price the product price as a BigDecimal
      */
-    public void setProductPrice(float price) {
+    public void setProductPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -214,11 +215,12 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public BigDecimal setPrice(BigDecimal price) {
         this.price = price;
+        return price;
     }
 }

@@ -1,5 +1,6 @@
 package com.ecommerce.ECommerceApp.model;
-
+import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -12,14 +13,24 @@ import javax.persistence.Table;
  * Represents an order in the e-commerce application.
  */
 @Entity
-@Table(name = "`order`")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderID;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @OneToOne
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
+
     private LocalDateTime orderDate;
     private int userID;
-    private float totalAmount;
+    private BigDecimal totalAmount;
+    private String status;
 
     // Default constructor
     public Order() {}
@@ -32,7 +43,7 @@ public class Order {
      * @param userID the user ID associated with the order
      * @param totalAmount the total amount of the order
      */
-    public Order(int orderID, LocalDateTime orderDate, int userID, float totalAmount) {
+    public Order(int orderID, LocalDateTime orderDate, int userID, BigDecimal totalAmount) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.userID = userID;
@@ -98,7 +109,7 @@ public class Order {
      *
      * @return the total amount of the order
      */
-    public float getTotalAmount() {
+    public BigDecimal getTotalAmount() {
         return totalAmount;
     }
 
@@ -107,7 +118,25 @@ public class Order {
      *
      * @param totalAmount the total amount of the order
      */
-    public void setTotalAmount(float totalAmount) {
+    public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
-}
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status;}
+    }
