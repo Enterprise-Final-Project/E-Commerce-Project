@@ -30,17 +30,18 @@ public class OrderController {
         if (currentUser == null) {
             throw new IllegalStateException("User is not authenticated");
         }
+
         try {
             List<Order> orders = orderService.getOrdersForCurrentUser(currentUser);
             model.addAttribute("orders", orders);
         } catch (NoOrdersFoundException e) {
             model.addAttribute("errorMessage", e.getMessage());
         }
-        return "order-history";
+        return "past_orders";
     }
 
     // Show order details
-    @GetMapping("/orders/{orderId}")
+    @GetMapping("/past_order_details/{orderId}")
     public String getOrderDetails(@PathVariable Long orderId, Model model) {
         Order order = orderService.getOrderById(orderId);
         model.addAttribute("order", order);

@@ -1,15 +1,12 @@
 package com.ecommerce.ECommerceApp.service;
 
-import com.ecommerce.ECommerceApp.model.Order;
-import com.ecommerce.ECommerceApp.model.User;
-import com.ecommerce.ECommerceApp.model.Cart;
+import com.ecommerce.ECommerceApp.model.*;
 import com.ecommerce.ECommerceApp.repository.CartRepository;
 import com.ecommerce.ECommerceApp.repository.WishlistRepository;
 import com.ecommerce.ECommerceApp.repository.OrderRepository;
 
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.ECommerceApp.model.Wishlist;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -70,6 +67,7 @@ public class ShopService {
 
     public List<Order> getOrdersForCurrentUser(User user) {
         return orderRepository.findByUser(user);
+
     }
 
     public Order getOrderById(Long orderId) {

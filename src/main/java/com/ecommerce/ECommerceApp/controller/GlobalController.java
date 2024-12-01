@@ -1,5 +1,6 @@
 package com.ecommerce.ECommerceApp.controller;
 
+import com.ecommerce.ECommerceApp.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -12,6 +13,12 @@ import com.ecommerce.ECommerceApp.model.User;
 @ControllerAdvice
 public class GlobalController {
 
+    private final UserRepository userRepository;
+
+    public GlobalController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @ModelAttribute("currentUser")
     public void addUserToModel(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -20,6 +27,10 @@ public class GlobalController {
             Object principal = authentication.getPrincipal();
             if (principal instanceof User) {
                 User user = (User) principal;
+                //get user from database for global usage
+                User managedUser = userRepository.findById(user.getUserID())
+                        .orElseThrow(() -> new IllegalStateException("User not found in the database"));
+
                 model.addAttribute("loggedInUser", user);
                 model.addAttribute("firstName", user.getFirstName());
                 model.addAttribute("roles", user.getRole());

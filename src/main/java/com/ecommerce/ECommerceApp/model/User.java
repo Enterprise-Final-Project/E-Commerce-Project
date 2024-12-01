@@ -118,6 +118,9 @@ public class User implements UserDetails{
         this.wishlist = new Wishlist();
         this.wishlist.setUser(this);
 
+        this.orders = new ArrayList<>();
+
+
         if (builder.payments != null) {
             this.payments.addAll(builder.payments);
             this.payments.forEach(payment -> payment.setUser(this)); // Set the user for each payment
@@ -371,4 +374,11 @@ public class User implements UserDetails{
         wishlist.setUser(this);
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
