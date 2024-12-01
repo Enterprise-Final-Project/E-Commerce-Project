@@ -71,21 +71,6 @@ public class EcommerceController {
      *
      * @return the name of the login page view
      */
-//    @GetMapping("/login_page")
-//    public String login_page() {
-//        return "login_page";
-//    }
-
-    /**
-     * Handles requests to the past orders page.
-     *
-     * @return the name of the past orders page view
-     */
-    @GetMapping("/past_orders")
-    public String past_orders() {
-        return "past_orders";
-    }
-
     /**
      * Handles requests to the product details page.
      *
@@ -115,9 +100,6 @@ public class EcommerceController {
     public String storefront_management() {
         return "storefront_management";
     }
-
-
-
     /**
      * Handles search requests.
      *

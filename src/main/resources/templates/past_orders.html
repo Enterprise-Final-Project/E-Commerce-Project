@@ -6,10 +6,33 @@
 <body>
 <!-- Include the navbar -->
 <div th:replace="fragments/navbar :: navbar"></div>
-<div>
-    <p>past orders here</p>
 
-</div>
+<h1>Order History</h1>
+
+<table >
+    <thead>
+    <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Total</th>
+        <th>Order Status</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- get list of orders-->
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.getOrderID()}"></td>
+        <td th:text="${#dates.format(order.getOrderDate(), 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${order.getTotalAmount()}"></td>
+        <td th:text="${order.getStatus()}"></td>
+        <td>
+            <a th:href="@{/past_order_details/{id}(id=${order.getOrderID()})}">View Details</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 <!-- Include the footer -->
 <div th:replace="fragments/footer :: footer"></div>
 </body>

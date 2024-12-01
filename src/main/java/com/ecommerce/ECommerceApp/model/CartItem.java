@@ -1,6 +1,7 @@
 package com.ecommerce.ECommerceApp.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Represents an item in the shopping cart.
@@ -42,4 +43,5 @@ public class CartItem extends Product{
     public void setCart(Cart cart) {
         this.cart = cart;
     }
+
 }

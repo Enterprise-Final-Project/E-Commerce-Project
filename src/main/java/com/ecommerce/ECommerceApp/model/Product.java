@@ -219,7 +219,8 @@ public class Product {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public BigDecimal setPrice(BigDecimal price) {
         this.price = price;
+        return price;
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ShopService {
@@ -40,6 +41,7 @@ public class ShopService {
                 .orElseThrow(() -> new RuntimeException("Wishlist not found"));
     }
 
+    //order tools
     @Transactional
     public Order placeOrder(User user) {
         Cart cart = user.getCart();
@@ -64,5 +66,14 @@ public class ShopService {
         //cartService.clearCart(cart);
 
         return savedOrder;
+    }
+
+    public List<Order> getOrdersForCurrentUser(User user) {
+        return orderRepository.findByUser(user);
+    }
+
+    public Order getOrderById(Long orderId) {
+        return orderRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found"));
     }
 }
