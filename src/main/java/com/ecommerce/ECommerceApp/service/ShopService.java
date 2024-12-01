@@ -73,7 +73,7 @@ public class ShopService {
     }
 
     public Order getOrderById(Long orderId) {
-        return orderRepository.findById(orderId)
+        return orderRepository.findById(Math.toIntExact(orderId))
                 .orElseThrow(() -> new IllegalArgumentException("Order not found"));
     }
 }

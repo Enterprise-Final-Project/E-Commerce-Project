@@ -1,5 +1,6 @@
 package com.ecommerce.ECommerceApp.controller;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class CheckoutController {
         Order order = new Order();
         order.setOrderDate(LocalDateTime.now());
         order.setUserID(1); // Nathan: Change later after auth
-        order.setTotalAmount((float) cartService.getTotalAmount());
+        order.setTotalAmount(BigDecimal.valueOf((float) cartService.getTotalAmount()));
         orderRepository.save(order);
 
         // Clear the cart

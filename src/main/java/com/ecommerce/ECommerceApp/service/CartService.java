@@ -44,7 +44,7 @@ public class CartService {
 
     public double getTotalAmount() {
         return cartItemRepository.findAll().stream()
-                                 .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .mapToDouble(item -> item.getPrice().doubleValue() * item.getQuantity())
                                  .sum();
     }
 }
