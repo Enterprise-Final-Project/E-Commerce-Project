@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments/header :: header">
+    <title>About</title>
 </head>
 <body>
+<!-- Include the navbar -->
+<div th:replace="fragments/navbar :: navbar"></div>
 <p>page where the storefront can see orders and the status</p>
+<!-- Include the footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
 </body>
 </html>

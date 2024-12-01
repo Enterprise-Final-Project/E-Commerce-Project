@@ -1,25 +1,41 @@
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\EcommerceController.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Review.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Order.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Address.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\AccountType.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\CartItemRepository.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PaymentStatus.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Payment.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Email.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\ShippingDetails.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\ECommerceAppApplication.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\ProductService.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Seller.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\config\SecurityConfig.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Category.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\ShippingType.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Buyer.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\User.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Admin.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\CartService.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Product.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\ProductRepository.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\CartItem.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PaymentType.java
-C:\Users\andre\OneDrive\Desktop\Enterprise App Dev\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PhoneNumber.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PhoneNumber.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Review.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Cart.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\CustomUserDetailsService.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\CartRepository.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\WishlistRepository.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Order.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Product.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\dto\UserRegistrationDto.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\ShippingDetails.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\ProductRepository.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\ProductService.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\config\SecurityConfig.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Address.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\LoginController.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\config\UserDataLoader.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\ShippingType.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Email.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\WishlistItem.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\AdminController.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PaymentStatus.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\EcommerceController.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\dto\UserUpdateDto.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\repository\UserRepository.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Payment.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\PaymentType.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\ECommerceAppApplication.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\config\AdminDataLoader.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\UserController.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Seller.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Wishlist.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\AccountType.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Admin.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Category.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\User.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\Buyer.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\UserService.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\ShopController.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\controller\GlobalController.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\service\ShopService.java
+C:\Users\alexa\IdeaProjects\E-Commerce-Project\src\main\java\com\ecommerce\ECommerceApp\model\CartItem.java

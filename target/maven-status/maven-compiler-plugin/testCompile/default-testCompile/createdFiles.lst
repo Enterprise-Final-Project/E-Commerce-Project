@@ -1,10 +1,7 @@
-com\ecommerce\ECommerceApp\model\UserTest.class
-com\ecommerce\ECommerceApp\model\BuyerTest.class
 com\ecommerce\ECommerceApp\model\ShippingDetailsTest.class
 com\ecommerce\ECommerceApp\model\SellerTest.class
 com\ecommerce\ECommerceApp\model\PaymentTest.class
 com\ecommerce\ECommerceApp\model\OrderTest.class
-com\ecommerce\ECommerceApp\model\AdminTest.class
 com\ecommerce\ECommerceApp\model\ReviewTest.class
 com\ecommerce\ECommerceApp\model\ProductTest.class
 com\ecommerce\ECommerceApp\model\CategoryTest.class

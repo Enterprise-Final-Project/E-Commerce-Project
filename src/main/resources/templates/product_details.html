@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-  <head>
+<head>
     <head th:replace="fragments/header :: header"></head>
-    <title th:text="${product.name} + ' - Product Details'">
-      Product Details
-    </title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-  </head>
-  <body>
+        <!--- should probably add name of product + dash-->
+        <title>Product Details</title>
+    </head>
+    <body>
     <div>
-      <div th:replace="fragments/navbar :: navbar"></div>
+        <!--- navbar and account bar -->
+        <div th:replace="fragments/navbar :: navbar"></div>
+
     </div>
     <div class="container mt-5">
       <div class="row justify-content-center">
@@ -51,11 +48,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    <!-- Include the footer -->
     <div th:replace="fragments/footer :: footer"></div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+    </body>
 </html>

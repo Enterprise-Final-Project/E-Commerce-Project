@@ -23,32 +23,26 @@ WHERE NOT EXISTS (SELECT 1 FROM product WHERE name = 'Jacket');
 
 -- Create table for User
 CREATE TABLE IF NOT EXISTS user (
-    userID BIGINT AUTO_INCREMENT PRIMARY KEY,
+    userID VARCHAR(36) PRIMARY KEY,
     active BOOLEAN,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
-    phone_number VARCHAR(255),
-    email VARCHAR(255) UNIQUE,
+    firstName VARCHAR(255),
+    lastName VARCHAR(255),
+    phoneNumber VARCHAR(255),
+    email VARCHAR(255),
     password VARCHAR(255),
-    mailing_address VARCHAR(255),
-    shipping_address VARCHAR(255),
-    payment_method INT,
-    account_type VARCHAR(255)
+    mailingAddress VARCHAR(255),
+    shippingAddress VARCHAR(255),
+    paymentMethod INT,
+    accountType VARCHAR(255),
+    UNIQUE (email)
 );
 
 -- Insert test data into User table
-
-/* 
-paymentid
-payment_status
-payment_type */
-
-
-INSERT INTO user (active, first_name, last_name, phone_number, email, password, mailing_address, shipping_address, payment_method, account_type)
-SELECT TRUE, 'John', 'Doe', '123-456-7890', 'john.doe@example.com', 'password123', '123 Main St', '123 Main St', '1', 'ADMIN'
+INSERT INTO user (userID, active, firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod, accountType)
+SELECT '1', TRUE, 'John', 'Doe', '123-456-7890', 'john.doe@example.com', 'password123', '123 Main St', '123 Main St', 1, 'BUYER'
 WHERE NOT EXISTS (SELECT 1 FROM user WHERE email = 'john.doe@example.com');
-INSERT INTO user (active, first_name, last_name, phone_number, email, password, mailing_address, shipping_address, payment_method, account_type)
-SELECT TRUE, 'Jane', 'Smith', '098-765-4321', 'jane.smith@example.com', 'password456', '456 Elm St', '456 Elm St', '2', 'USER'
+INSERT INTO user (userID, active, firstName, lastName, phoneNumber, email, password, mailingAddress, shippingAddress, paymentMethod, accountType)
+SELECT '2', TRUE, 'Jane', 'Smith', '098-765-4321', 'jane.smith@example.com', 'password456', '456 Elm St', '456 Elm St', 2, 'SELLER'
 WHERE NOT EXISTS (SELECT 1 FROM user WHERE email = 'jane.smith@example.com');
 
 -- Create table for Payment
@@ -71,7 +65,7 @@ WHERE NOT EXISTS (SELECT 1 FROM payment WHERE paymentType = 'DEBIT');
 CREATE TABLE IF NOT EXISTS `order` (
     orderID INT AUTO_INCREMENT PRIMARY KEY,
     orderDate TIMESTAMP,
-    userID BIGINT,
+    userID VARCHAR(36),
     totalAmount FLOAT,
     FOREIGN KEY (userID) REFERENCES user(userID)
 );
@@ -131,22 +125,3 @@ WHERE NOT EXISTS (SELECT 1 FROM cart_item WHERE productID = 1 AND quantity = 2 A
 INSERT INTO cart_item (productID, quantity, price)
 SELECT 2, 1, 29.99
 WHERE NOT EXISTS (SELECT 1 FROM cart_item WHERE productID = 2 AND quantity = 1 AND price = 29.99);
-
-
-
--- Create table for WishlistItem
-CREATE TABLE IF NOT EXISTS wishlist_Item (
-ItemID Int Auto_Increment Primary Key,
-productID  BIGINT ,
-quantity INT,
-price DOUBLE,
-foreign key (productID) References product(id)
-);
-
--- Insert test data into CartItem table
-INSERT INTO wishlist_Item (productID, quantity, price)
-SELECT 1, 2, 19.99
-WHERE NOT EXISTS (SELECT 1 FROM wishlist_Item WHERE productID = 1 AND quantity = 2 AND price = 19.99);
-INSERT INTO wishlist_Item (productID, quantity, price)
-SELECT 2, 1, 29.99
-WHERE NOT EXISTS (SELECT 1 FROM wishlist_Item WHERE productID = 2 AND quantity = 1 AND price = 29.99);
