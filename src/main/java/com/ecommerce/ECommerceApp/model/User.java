@@ -69,6 +69,11 @@ public class User implements UserDetails{
     //setting empty defaults here
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Wishlist wishlist = new Wishlist();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
+
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
     // authorities

@@ -41,4 +41,16 @@ public class ShopController {
         }
         return "wishlist";
     }
+
+//    //order history
+//    @GetMapping("/past_orders")
+//    public String getPastOrders(Model model, @AuthenticationPrincipal User user) {
+//        if (user != null) {
+//            x x = shopService.getWishlistWithItems(user.getWishlist().getId());
+//            model.addAttribute("wishlist", wishlist);
+//        } else {
+//            model.addAttribute("wishlist", new Wishlist()); //empty
+//        }
+//        return "wishlist";
+//    }
 }
