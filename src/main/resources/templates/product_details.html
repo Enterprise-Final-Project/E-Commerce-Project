@@ -11,30 +11,42 @@
         <div th:replace="fragments/navbar :: navbar"></div>
 
     </div>
-        <div class="col-4">
-            <!-- make this not appear if there's only one image tied to this...do we tie multiple images-->
-            <ul>
-                <li>image</li>
-                <li>image</li>
-                <li>image</li>
-                <li>image</li>
-            </ul>
-        </div>
-        <div class="col-4">
-            <h1>Product Name</h1>
-            <img src="product_img.link"></img>
-            <p>star rating</p>
-            <p>short description</p>
-            <p>description</p>
-            
-            <p></p>
-        </div>
-        <div class="col-4">
-            <p>price</p>
-            <p>quanity</p>
-            <p>add to cart</p>
-            <p>add to wishlist</p>
-            <p>shipping details</p>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card text-center">
+            <div class="card-header">
+              <h1 th:text="${product.name}">Product Name</h1>
+            </div>
+            <div class="card-body">
+              <p th:text="${product.description}">description</p>
+              <p th:text="'Price: $' + ${product.price}">price</p>
+              <p th:text="'Quantity: ' + ${product.stock}">quantity</p>
+              <p th:text="'Delivery Time: ' + ${product.deliveryTime}">
+                delivery time
+              </p>
+              <form th:action="@{/cart/add}" method="post">
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <button type="submit" class="btn btn-primary mb-3">
+                  Add to Cart
+                </button>
+              </form>
+              <form th:action="@{/wishlist/add}" method="post">
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <button type="submit" class="btn btn-secondary">
+                  Add to Wishlist
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
     <!-- Include the footer -->
     <div th:replace="fragments/footer :: footer"></div>

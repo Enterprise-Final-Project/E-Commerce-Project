@@ -2,13 +2,20 @@ package com.ecommerce.ECommerceApp.model;
 
 import java.time.LocalDateTime;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Represents an order in the e-commerce application.
  */
-@Component
+@Entity
+@Table(name = "`order`")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderID;
     private LocalDateTime orderDate;
     private int userID;

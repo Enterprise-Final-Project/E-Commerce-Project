@@ -1,55 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+  <head>
     <head th:replace="fragments/header :: header"></head>
     <title>Ecommerce - Cart</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <!--- navbar and account bar -->
-        <div th:replace="fragments/navbar :: navbar"></div>
-
+      <!--- navbar and account bar -->
+      <div th:replace="fragments/navbar :: navbar"></div>
     </div>
-
-<!--       Template for cards-->
-<!--       <div class="card mb-3">-->
-<!--           <img src="..." class="card-img-top" alt="...">-->
-<!--           <div class="card-body">-->
-<!--               <h5 class="card-title">Card title</h5>-->
-<!--               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
-<!--               <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
-<!--           </div>-->
-<!--       </div>-->
     <div class="container">
-        <h1>Cart</h1>
-
-        <!-- Check if the cart is empty -->
-        <div th:if="${cart.items == null || #lists.isEmpty(cart.items)}">
-            <p>Your cart is empty. Start adding items to see them here!</p>
-        </div>
-
-        <!-- Loop over cart items if not empty -->
-        <ul th:unless="${cart.items == null || #lists.isEmpty(cart.items)}">
-            <li th:each="item : ${cart.items}">
-                <div class="card mb-3">
-                    <!-- Dynamically load image -->
-                    <img th:src="${item.imageUrl}" class="card-img-top" alt="Product Image">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${item.productName}">Product Name</h5>
-                        <p class="card-text">Quantity: <span th:text="${item.quantity}">1</span></p>
-                        <p class="card-text">Price: $<span th:text="${item.price}">0.00</span></p>
-                        <p class="card-text">Total: $<span th:text="${item.price * item.quantity}">0.00</span></p>
-                    </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+          <h1 class="text-center">Cart</h1>
+          <div
+            class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 justify-content-center"
+          >
+            <div th:each="item : ${CartItems}" class="col">
+              <!--- should loop over the list-->
+              <div class="card h-100 shadow-sm text-center">
+                <div class="card-body">
+                  <h5 class="card-title" th:text="${item.product.name}">
+                    Card Title
+                  </h5>
+                  <p class="card-text" th:text="${item.product.description}">
+                    Some quick example text to build on the card title.
+                  </p>
                 </div>
-            </li>
-        </ul>
-
-        <!-- Checkout button, displayed only if there are items in the cart -->
-        <div th:unless="${cart.items == null || #lists.isEmpty(cart.items)}">
+                <ul class="list-group list-group-flush">
+                  <li
+                    class="list-group-item"
+                    th:text="'Price: ' + ${item.product.price}"
+                  >
+                    Price
+                  </li>
+                  <li
+                    class="list-group-item"
+                    th:text="'Delivery Time: ' + ${item.product.deliveryTime}"
+                  >
+                    Delivery Time
+                  </li>
+                </ul>
+                <div class="card-body d-flex flex-column align-items-center">
+                  <form
+                    th:action="@{/cart/remove}"
+                    method="post"
+                    style="margin: 0"
+                  >
+                    <input
+                      type="hidden"
+                      name="productId"
+                      th:value="${item.product.id}"
+                    />
+                    <button
+                      type="submit"
+                      class="btn btn-secondary mb-2"
+                      style="margin: 0"
+                    >
+                      Remove from Cart
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
             <a th:href="@{/checkout}" class="btn btn-primary">Checkout</a>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Include the footer -->
     <div th:replace="fragments/footer :: footer"></div>
-</body>
+  </body>
 </html>

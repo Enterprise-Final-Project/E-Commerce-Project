@@ -63,7 +63,7 @@ WHERE NOT EXISTS (SELECT 1 FROM payment WHERE paymentType = 'DEBIT');
 
 -- Create table for Order
 CREATE TABLE IF NOT EXISTS `order` (
-    orderID INT PRIMARY KEY,
+    orderID INT AUTO_INCREMENT PRIMARY KEY,
     orderDate TIMESTAMP,
     userID VARCHAR(36),
     totalAmount FLOAT,
@@ -111,9 +111,11 @@ WHERE NOT EXISTS (SELECT 1 FROM shipping_details WHERE shippingAddress = '456 El
 
 -- Create table for CartItem
 CREATE TABLE IF NOT EXISTS cart_item (
-    productID INT,
+    itemid INT PRIMARY KEY AUTO_INCREMENT,
+    productID BIGINT,
     quantity INT,
-    price DOUBLE
+    price DOUBLE,
+    FOREIGN KEY (productID) REFERENCES product(id)
 );
 
 -- Insert test data into CartItem table
