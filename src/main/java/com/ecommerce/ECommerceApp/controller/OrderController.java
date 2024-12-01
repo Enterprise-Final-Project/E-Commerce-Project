@@ -1,4 +1,5 @@
 package com.ecommerce.ECommerceApp.controller;
+import com.ecommerce.ECommerceApp.exception.NoOrdersFoundException;
 import com.ecommerce.ECommerceApp.model.Order;
 import com.ecommerce.ECommerceApp.model.User;
 import com.ecommerce.ECommerceApp.service.ShopService;
@@ -29,10 +30,13 @@ public class OrderController {
         if (currentUser == null) {
             throw new IllegalStateException("User is not authenticated");
         }
-        List<Order> orders = orderService.getOrdersForCurrentUser(currentUser);
-        model.addAttribute("orders", orders);
-
-        return "order_history";
+        try {
+            List<Order> orders = orderService.getOrdersForCurrentUser(currentUser);
+            model.addAttribute("orders", orders);
+        } catch (NoOrdersFoundException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
+        return "order-history";
     }
 
     // Show order details

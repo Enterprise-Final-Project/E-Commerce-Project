@@ -6,10 +6,17 @@
 <body>
 <!-- Include the navbar -->
 <div th:replace="fragments/navbar :: navbar"></div>
-
 <h1>Order History</h1>
+<!--- if there are no orders show error message --->
+<div th:if="${orders == null || orders.size() == 0}">
+    <p>No orders found. Start shopping now!</p>
+</div>
 
-<table >
+<!--- order histroy --->
+
+
+<div th:if="${orders != null}">
+<table th:if="${orders.size() > 0}">>
     <thead>
     <tr>
         <th>Order ID</th>
@@ -32,7 +39,7 @@
     </tr>
     </tbody>
 </table>
-
+</div>
 <!-- Include the footer -->
 <div th:replace="fragments/footer :: footer"></div>
 </body>
